@@ -10,10 +10,12 @@ public class getSensor : MonoBehaviour
     Quaternion curCorrection = Quaternion.identity;
     Quaternion aimCorrection = Quaternion.identity;
     double old_CompassTime = 0;
-    static int TH = 4;
-    bool flag = true; 
+    
+    static int TH = 2;
+    bool flag = true; // 終了判定
 
     private Animator anim;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,30 +23,35 @@ public class getSensor : MonoBehaviour
         Input.gyro.enabled = true;
         // 入力にコンパスをONにする
         Input.compass.enabled = true;
-
         anim = gameObject.GetComponent<Animator>();
-        
+        rb = gameObject.GetComponent<Rigidbody>();
+        rb.AddForce(10000, 100000, 100000);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         acc = Input.acceleration;
         gyro = Input.gyro;
         ret = Input.compass.rawVector;
+        
         if(acc.magnitude > TH){
             if(flag == true){
                 Debug.Log("OK");
                 flag = false;
                 anim.SetBool("AnimationFlag", true);
+                
+                //Invoke(nameof(changeState), 1.0f);
+            }else{
+
             }
         }else{
             flag = true;
+            
         }
 
-
-        //transform.rotation = gyro.attitude;
         /*
+        
         Quaternion gorientation = changeAxis (Input.gyro.attitude);
 
         if (Input.compass.timestamp > old_CompassTime) {
@@ -73,8 +80,11 @@ public class getSensor : MonoBehaviour
 
         transform.localRotation = curCorrection * gorientation;
         */
-
         
+    }
+    void changeState(){
+        anim.SetBool("AnimationFlag", false);
+        Debug.Log("test");
     }
     static Vector3 GetCompassRawVector() {
         Vector3 ret = Input.compass.rawVector;
@@ -113,5 +123,11 @@ public class getSensor : MonoBehaviour
 
         return ret;
     }
+    /*
+    public void moveByAddForce(){
+        rigidbody.AddForce(rigidbody.mass * Vector3.right * speed / Time.fixedDeltaTime, ForceMode.Force);
+
+    }
+    */
 }
 
