@@ -12,6 +12,8 @@ public class getSensor : MonoBehaviour
     double old_CompassTime = 0;
     static int TH = 4;
     bool flag = true; 
+
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,8 @@ public class getSensor : MonoBehaviour
         Input.gyro.enabled = true;
         // 入力にコンパスをONにする
         Input.compass.enabled = true;
+
+        anim = gameObject.GetComponent<Animator>();
         
     }
 
@@ -32,7 +36,7 @@ public class getSensor : MonoBehaviour
             if(flag == true){
                 Debug.Log("OK");
                 flag = false;
-                
+                anim.SetBool("AnimationFlag", true);
             }
         }else{
             flag = true;
