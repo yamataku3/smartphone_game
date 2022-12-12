@@ -10,9 +10,9 @@ public class RiceTest : MonoBehaviour
 
     void Start()
     {
-        // CubeƒvƒŒƒnƒu‚ğGameObjectŒ^‚Åæ“¾
+        // Cubeï¿½vï¿½ï¿½ï¿½nï¿½uï¿½ï¿½GameObjectï¿½^ï¿½Åæ“¾
         //GameObject obj = (GameObject)Resources.Load("rice");
-        // CubeƒvƒŒƒnƒu‚ğŒ³‚ÉAƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬A
+        // Cubeï¿½vï¿½ï¿½ï¿½nï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ÉAï¿½Cï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½ğ¶ï¿½ï¿½A
         for(int count=0; count<100;)
         {
             float rand_x = Random.Range(-0.8f, 0.8f);
@@ -26,7 +26,6 @@ public class RiceTest : MonoBehaviour
         }
         
     }
-
     // Update is called once per frame
     void Update()
     {
