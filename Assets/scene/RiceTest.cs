@@ -16,10 +16,10 @@ public class RiceTest : MonoBehaviour
         for(int count=0; count<100;)
         {
             float rand_x = Random.Range(-0.8f, 0.8f);
-            float rand_z = Random.Range(-0.8f, 0.8f);
-            if(rand_x*rand_x + rand_z*rand_z < 0.64)
+            float rand_y = Random.Range(-0.8f, 0.8f);
+            if(rand_x*rand_x + rand_y*rand_y < 0.64)
             {
-                Instantiate(rice, new Vector3(rand_x, 0.0f, rand_z), Quaternion.identity);
+                Instantiate(rice, new Vector3(rand_x, rand_y, 0.0f), Quaternion.identity);
                 count++;
             }
             
