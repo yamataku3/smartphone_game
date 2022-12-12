@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7072189639610413041}
   - component: {fileID: 5538273352489827241}
   - component: {fileID: 5268612209922274465}
-  - component: {fileID: -4029061766419459125}
   m_Layer: 0
   m_Name: rice
   m_TagString: Untagged
@@ -97,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5268612209922274465
 Rigidbody:
