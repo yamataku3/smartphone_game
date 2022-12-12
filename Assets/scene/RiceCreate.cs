@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class RiceTest : MonoBehaviour
+public class RiceCreate : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject rice;
@@ -13,13 +13,13 @@ public class RiceTest : MonoBehaviour
         // Cube�v���n�u��GameObject�^�Ŏ擾
         //GameObject obj = (GameObject)Resources.Load("rice");
         // Cube�v���n�u�����ɁA�C���X�^���X�𐶐��A
-        for(int count=0; count<100;)
+        for(int count=0; count<10;)
         {
             float rand_x = Random.Range(-0.8f, 0.8f);
             float rand_y = Random.Range(-0.8f, 0.8f);
-            if(rand_x*rand_x + rand_y*rand_y < 0.64)
+            if(rand_x*rand_x + rand_y*rand_y < 0.6)
             {
-                Instantiate(rice, new Vector3(rand_x, rand_y, 1.0f), Quaternion.identity);
+                Instantiate(rice, new Vector3(rand_x, rand_y, 0.5f), Quaternion.identity);
                 count++;
             }
             
