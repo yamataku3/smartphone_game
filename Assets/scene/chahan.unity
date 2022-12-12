@@ -346,7 +346,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: -90}
-<<<<<<< HEAD
 --- !u!1 &1334482486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cb0cc27c80db8e14c8f0a315c8e28b20,
@@ -383,8 +382,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
-=======
->>>>>>> main
+
 --- !u!1 &1777907055
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,11 +395,8 @@ GameObject:
   - component: {fileID: 1777907058}
   - component: {fileID: 1777907057}
   - component: {fileID: 1777907056}
-<<<<<<< HEAD
   - component: {fileID: 1777907060}
   - component: {fileID: 1777907061}
-=======
->>>>>>> main
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -487,7 +482,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!114 &1777907060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,8 +506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3186afda70af82d4889c6eb9b9874788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
->>>>>>> main
 --- !u!1001 &2012825698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,11 +536,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cb0cc27c80db8e14c8f0a315c8e28b20,
         type: 3}
       propertyPath: m_LocalRotation.w
-<<<<<<< HEAD
       value: 0
-=======
-      value: 1
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb0cc27c80db8e14c8f0a315c8e28b20,
         type: 3}
@@ -563,11 +551,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cb0cc27c80db8e14c8f0a315c8e28b20,
         type: 3}
       propertyPath: m_LocalRotation.z
-<<<<<<< HEAD
       value: 1
-=======
-      value: 0
->>>>>>> main
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: cb0cc27c80db8e14c8f0a315c8e28b20,
         type: 3}
