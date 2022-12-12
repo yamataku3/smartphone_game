@@ -32,12 +32,15 @@ public class getSensor : MonoBehaviour
             if(flag == true){
                 Debug.Log("OK");
                 flag = false;
+                
             }
         }else{
             flag = true;
         }
-        //transform.rotation = gyro.attitude;
 
+
+        //transform.rotation = gyro.attitude;
+        /*
         Quaternion gorientation = changeAxis (Input.gyro.attitude);
 
         if (Input.compass.timestamp > old_CompassTime) {
@@ -65,7 +68,7 @@ public class getSensor : MonoBehaviour
         }
 
         transform.localRotation = curCorrection * gorientation;
-        
+        */
 
         
     }
