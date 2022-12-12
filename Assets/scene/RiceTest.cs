@@ -19,7 +19,7 @@ public class RiceTest : MonoBehaviour
             float rand_y = Random.Range(-0.8f, 0.8f);
             if(rand_x*rand_x + rand_y*rand_y < 0.64)
             {
-                Instantiate(rice, new Vector3(rand_x, rand_y, 0.0f), Quaternion.identity);
+                Instantiate(rice, new Vector3(rand_x, rand_y, 1.0f), Quaternion.identity);
                 count++;
             }
             
