@@ -11,11 +11,14 @@ public class getSensor : MonoBehaviour
     Quaternion aimCorrection = Quaternion.identity;
     double old_CompassTime = 0;
     
-    static int TH = 2;
-    bool flag = true; // 終了判定
+    static double TH_large = 2.5;
+    static double TH_middle = 2;
+    static double TH_small = 1.5;
+    bool flag = true; // ジェスチャを判定する状態か否か
 
     private Animator anim;
     private Rigidbody rb;
+    public int move_option = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,21 +37,52 @@ public class getSensor : MonoBehaviour
         acc = Input.acceleration;
         gyro = Input.gyro;
         ret = Input.compass.rawVector;
-        
-        if(acc.magnitude > TH){
+
+        //Debug.Log(acc.magnitude);
+
+        if (acc.magnitude > TH_large){
             if(flag == true){
-                Debug.Log("OK");
+                Debug.Log("large");
                 flag = false;
-                anim.SetBool("AnimationFlag", true);
-                
-                //Invoke(nameof(changeState), 1.0f);
-            }else{
+                move_option = 3;
+                anim.SetBool("AnimationFlag_large", true);
+                Invoke(nameof(changeStateLarge), 2.5f);
+            }
+            else{
+
+            }
+        }else if (acc.magnitude > TH_middle){
+            if (flag == true)
+            {
+                Debug.Log("middle");
+                flag = false;
+                move_option = 2;
+                anim.SetBool("AnimationFlag_middle", true);
+                Invoke(nameof(changeStateMiddle), 2.5f);
+            }
+            else
+            {
+
+            }
+        }else if (acc.magnitude > TH_small){
+            if (flag == true)
+            {
+                Debug.Log("small");
+                flag = false;
+                move_option = 1;
+                anim.SetBool("AnimationFlag_small", true);
+                Invoke(nameof(changeStateSmall), 2.5f);
+            }
+            else
+            {
 
             }
         }else{
-            flag = true;
-            
-        }
+            if(acc.magnitude < 1.1 && acc.magnitude > 0.9)
+            {
+                //flag = true;
+            }
+        } 
 
         /*
         
@@ -82,10 +116,26 @@ public class getSensor : MonoBehaviour
         */
         
     }
-    void changeState(){
-        anim.SetBool("AnimationFlag", false);
+    void changeStateLarge(){
+        anim.SetBool("AnimationFlag_large", false);
+        flag = true;
         Debug.Log("test");
     }
+
+    void changeStateMiddle()
+    {
+        anim.SetBool("AnimationFlag_middle", false);
+        flag = true;
+        Debug.Log("test");
+    }
+
+    void changeStateSmall()
+    {
+        anim.SetBool("AnimationFlag_small", false);
+        flag = true;
+        Debug.Log("test");
+    }
+
     static Vector3 GetCompassRawVector() {
         Vector3 ret = Input.compass.rawVector;
         if (Application.platform == RuntimePlatform.Android) 
