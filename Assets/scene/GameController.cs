@@ -29,7 +29,6 @@ public class GameController: MonoBehaviour
         Input.compass.enabled = true; 
         anim = gameObject.GetComponent<Animator>();
     }
-
     // Update is called once per frame
     void FixedUpdate()
     {
