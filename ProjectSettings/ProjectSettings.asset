@@ -250,8 +250,8 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: "C:/Users/naoto/OneDrive/\u30C9\u30AD\u30E5\u30E1\u30F3\u30C8/android/user.keystore"
-  AndroidKeyaliasName: takayanagi
+  AndroidKeystoreName: C:/Users/imuka/Documents/Unity/user.keystore
+  AndroidKeyaliasName: yamamoto
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

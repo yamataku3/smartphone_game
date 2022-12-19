@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class RiceMaster : MonoBehaviour
 {
+    /*
+    start: 米生成
+    update: 
+    米を動かすべきかどうか
+
+    */
     // Start is called before the first frame update
     [SerializeField] GameObject rice;
     int riceN = 1000;
@@ -30,11 +36,10 @@ public class RiceMaster : MonoBehaviour
                 rices[count].name = "Rice" + count.ToString();
                 count++;
             }
-            
         }
-        GameObject fryingpan = GameObject.Find("OurFlyPan");
-        //GameObject fryingpan = GameObject.Find("Cube");
-        sensorscript = fryingpan.GetComponent<getSensor>();
+        // GameObject fryingpan = GameObject.Find("fryingpan");
+        // GameObject fryingpan = GameObject.Find("Cube");
+        // sensorscript = fryingpan.GetComponent<getSensor>();
     }
     // Update is called once per frame
     void Update(){
@@ -47,7 +52,6 @@ public class RiceMaster : MonoBehaviour
                 Invoke(nameof(forceToRiceStart), delay_time);
                 Invoke(nameof(forceToRice), delay_time + 0.2f);
                 Invoke(nameof(forceToRiceEnd), delay_time + 0.4f);
-
                 sensorscript.move_option = 0;
                 Invoke(nameof(changeFlag), 2.5f);
             }
