@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4440222, g: 0.49316168, b: 0.5722313, a: 1}
+  m_IndirectSpecularColor: {r: 0.446577, g: 0.49641138, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -270,7 +270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rice: {fileID: 8404987381454033287, guid: dead882b39937a540a1cd36eb9e7028f, type: 3}
-  chahan_text: {fileID: 1169299638}
   color1: {fileID: 2100000, guid: 753c534679cf6b749ac104e43ecc88c2, type: 2}
   color2: {fileID: 2100000, guid: d571276358e8c4743a57df8cfb89b3ea, type: 2}
 --- !u!82 &323078181
@@ -651,7 +650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 500}
+  m_AnchoredPosition: {x: 0, y: 630}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169299638
@@ -837,6 +836,7 @@ MonoBehaviour:
   move_option: 0
   game_phase_management: 0
   chahan_text: {fileID: 1169299638}
+  force_ratio: 0
 --- !u!1 &1777907055
 GameObject:
   m_ObjectHideFlags: 0
