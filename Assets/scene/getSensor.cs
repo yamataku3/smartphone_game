@@ -42,11 +42,11 @@ public class getSensor : MonoBehaviour
 
         if (acc.magnitude > TH_large){
             if(flag == true){
-                Debug.Log("large");
+                //Debug.Log("large");
                 flag = false;
                 move_option = 3;
                 anim.SetBool("AnimationFlag_large", true);
-                Invoke(nameof(changeStateLarge), 2.5f);
+                Invoke(nameof(changeStateLarge), 1.5f);
             }
             else{
 
@@ -54,11 +54,11 @@ public class getSensor : MonoBehaviour
         }else if (acc.magnitude > TH_middle){
             if (flag == true)
             {
-                Debug.Log("middle");
+                //.Log("middle");
                 flag = false;
                 move_option = 2;
                 anim.SetBool("AnimationFlag_middle", true);
-                Invoke(nameof(changeStateMiddle), 2.5f);
+                Invoke(nameof(changeStateMiddle), 1.5f);
             }
             else
             {
@@ -67,11 +67,11 @@ public class getSensor : MonoBehaviour
         }else if (acc.magnitude > TH_small){
             if (flag == true)
             {
-                Debug.Log("small");
+                //Debug.Log("small");
                 flag = false;
                 move_option = 1;
                 anim.SetBool("AnimationFlag_small", true);
-                Invoke(nameof(changeStateSmall), 2.5f);
+                Invoke(nameof(changeStateSmall), 1.5f);
             }
             else
             {
@@ -119,21 +119,18 @@ public class getSensor : MonoBehaviour
     void changeStateLarge(){
         anim.SetBool("AnimationFlag_large", false);
         flag = true;
-        Debug.Log("test");
     }
 
     void changeStateMiddle()
     {
         anim.SetBool("AnimationFlag_middle", false);
         flag = true;
-        Debug.Log("test");
     }
 
     void changeStateSmall()
     {
         anim.SetBool("AnimationFlag_small", false);
         flag = true;
-        Debug.Log("test");
     }
 
     static Vector3 GetCompassRawVector() {
