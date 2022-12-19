@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class RiceMaster : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject rice;
+    [SerializeField] TextMeshProUGUI chahan_text;
     int riceN = 1000;
     GameObject[] rices;
     getSensor sensorscript;
@@ -47,8 +50,8 @@ public class RiceMaster : MonoBehaviour
                 Invoke(nameof(forceToRiceStart), delay_time);
                 Invoke(nameof(forceToRice), delay_time + 0.2f);
                 Invoke(nameof(forceToRiceEnd), delay_time + 0.4f);
-
                 sensorscript.move_option = 0;
+                chahan_text.text = "Too strong ... \nTry again!";
                 Invoke(nameof(changeFlag), 2.5f);
             }
             else if (sensorscript.move_option == 2){   
@@ -60,6 +63,7 @@ public class RiceMaster : MonoBehaviour
                 Invoke(nameof(forceToRice), delay_time + 0.2f);
                 Invoke(nameof(forceToRiceEnd), delay_time + 0.4f);
                 sensorscript.move_option = 0;
+                chahan_text.text = "Good!";
                 Invoke(nameof(changeFlag), 2.5f);
                 if (fly_level == 0)
                 {
@@ -72,6 +76,7 @@ public class RiceMaster : MonoBehaviour
                 }else if (fly_level == 2)
                 {
                     Debug.Log("finish!!!");
+                    Invoke(nameof(changeScene), 2.5f);
                 }
                 
             }
@@ -85,6 +90,7 @@ public class RiceMaster : MonoBehaviour
                 Invoke(nameof(forceToRiceEnd), delay_time + 0.4f);
                 sensorscript.move_option = 0;
                 Invoke(nameof(changeFlag), 2.5f);
+                chahan_text.text = "Too weak ... \nTry again!";
             }
             else{
                 option = 0.0f;
@@ -93,6 +99,10 @@ public class RiceMaster : MonoBehaviour
         }
     }
     
+    void changeScene()
+    {
+        SceneManager.LoadScene("endScene");
+    }
     void fryRice1()
     {
         for (int i = 0; i < riceN; i++)
@@ -139,5 +149,7 @@ public class RiceMaster : MonoBehaviour
     public void changeFlag()
     {
         move_rice_flag = true;
+        int times = 3 - fly_level;
+        chahan_text.text = "Shake your smartphone\n(" + times + "times)";
     }
 }
