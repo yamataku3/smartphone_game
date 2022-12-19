@@ -27,8 +27,8 @@ public class getSensor : MonoBehaviour
         // 入力にコンパスをONにする
         Input.compass.enabled = true;
         anim = gameObject.GetComponent<Animator>();
-        rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddForce(10000, 100000, 100000);
+        //rb = gameObject.GetComponent<Rigidbody>();
+        //rb.AddForce(10000, 100000, 100000);
     }
 
     // Update is called once per frame
@@ -45,8 +45,8 @@ public class getSensor : MonoBehaviour
                 Debug.Log("large");
                 flag = false;
                 move_option = 3;
-                anim.SetBool("AnimationFlag_large", true);
-                Invoke(nameof(changeStateLarge), 2.5f);
+                //anim.SetBool("AnimationFlag_large", true);
+                //Invoke(nameof(changeStateLarge), 2.5f);
             }
             else{
 
@@ -57,8 +57,8 @@ public class getSensor : MonoBehaviour
                 Debug.Log("middle");
                 flag = false;
                 move_option = 2;
-                anim.SetBool("AnimationFlag_middle", true);
-                Invoke(nameof(changeStateMiddle), 2.5f);
+                //anim.SetBool("AnimationFlag_middle", true);
+                //Invoke(nameof(changeStateMiddle), 2.5f);
             }
             else
             {

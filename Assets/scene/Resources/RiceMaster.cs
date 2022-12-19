@@ -28,7 +28,7 @@ public class RiceMaster : MonoBehaviour
             }
             
         }
-        GameObject fryingpan = GameObject.Find("fryingpan");
+        GameObject fryingpan = GameObject.Find("OurFlyPan");
         //GameObject fryingpan = GameObject.Find("Cube");
         sensorscript = fryingpan.GetComponent<getSensor>();
     }
