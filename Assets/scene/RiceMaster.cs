@@ -40,9 +40,8 @@ public class RiceMaster : MonoBehaviour
                 count++;
             }
         }
-        // GameObject fryingpan = GameObject.Find("fryingpan");
-        // GameObject fryingpan = GameObject.Find("Cube");
-        // sensorscript = fryingpan.GetComponent<getSensor>();
+        GameObject fryingpan = GameObject.Find("fryingpan");
+        sensorscript = fryingpan.GetComponent<getSensor>();
     }
     // Update is called once per frame
     void Update(){
