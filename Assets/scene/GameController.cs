@@ -27,7 +27,8 @@ public class GameController: MonoBehaviour
     public float force_ratio;
     float delay_time = 0.0f;
     // Animator
-    private Animator anim;
+    private Animator flyingpan_anim;
+    private Animator text_anim;
     // FoodMaster
     private FoodMaster foodMasterScript;
     public int count_lower = 0;//焦げた回数をカウント
