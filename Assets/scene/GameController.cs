@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.UI;
 
 // get sensor data
 public class GameController: MonoBehaviour
@@ -51,6 +50,7 @@ public class GameController: MonoBehaviour
         text_anim = GameObject.Find("Canvas/AnimatedText").GetComponent<Animator>();
         // text_anim.SetBool("TextAnimationFlag", false);
         Animated_Text.text = "";
+
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -102,9 +102,13 @@ public class GameController: MonoBehaviour
 
                 // 終了判定
                 if(game_phase_management == 2){                   
-                    //シーン遷移
+                    // score計算
                     score = foodMasterScript.calculatingScore(count_lower);
                     Debug.Log(score);
+                    // score保存
+                    PlayerPrefs.SetInt("score", (int)score);
+                    PlayerPrefs.Save();
+                    //シーン遷移
                     StartCoroutine(changeScene(2.5f));
                 }else{
                     StartCoroutine(foodMasterScript.riceColorChange(2.5f, game_phase_management));
@@ -156,6 +160,8 @@ public class GameController: MonoBehaviour
         //delay秒待つ
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("endScene");
+
+
     }
     public void GreenOnionButtonOnClick()
     {
