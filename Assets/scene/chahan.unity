@@ -274,6 +274,8 @@ MonoBehaviour:
   rice: {fileID: 8404987381454033287, guid: dead882b39937a540a1cd36eb9e7028f, type: 3}
   color1: {fileID: 2100000, guid: 753c534679cf6b749ac104e43ecc88c2, type: 2}
   color2: {fileID: 2100000, guid: d571276358e8c4743a57df8cfb89b3ea, type: 2}
+  score: 0
+  detectionFallenObjectScript: {fileID: 1777907060}
 --- !u!82 &323078181
 AudioSource:
   m_ObjectHideFlags: 0
@@ -786,7 +788,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5122e9b093d940149816d03bd1a1f7d2,
         type: 3}
       propertyPath: m_Name
-      value: 11632_Cooktop_v2_L3
+      value: stove
       objectReference: {fileID: 0}
     - target: {fileID: 4778461712609040028, guid: 5122e9b093d940149816d03bd1a1f7d2,
         type: 3}
@@ -827,7 +829,7 @@ RectTransform:
   m_GameObject: {fileID: 1169299636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 103567612}
@@ -835,7 +837,15 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: 0, y: 550}
+=======
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: 0, y: 325}
+=======
   m_AnchoredPosition: {x: 0, y: 800}
+>>>>>>> main
+>>>>>>> 0cbbe6eeff4410fe3303d7d211c97b854b77a651
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169299638
@@ -1022,6 +1032,8 @@ MonoBehaviour:
   game_phase_management: 0
   chahan_text: {fileID: 1169299638}
   force_ratio: 0
+  count_lower: 0
+  score: 0
 --- !u!1 &1777907055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,6 +1046,8 @@ GameObject:
   - component: {fileID: 1777907058}
   - component: {fileID: 1777907057}
   - component: {fileID: 1777907056}
+  - component: {fileID: 1777907060}
+  - component: {fileID: 1777907061}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -1049,8 +1063,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777907055}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1119,6 +1133,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1777907060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777907055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7c977701d6689479d658eedc514e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count_fallen_object: 0
+--- !u!54 &1777907061
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777907055}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2012825698
 PrefabInstance:
   m_ObjectHideFlags: 0

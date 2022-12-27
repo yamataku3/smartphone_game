@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteRice : MonoBehaviour
+public class DetectionFallenObject : MonoBehaviour
 {
+    public int count_fallen_object = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +18,8 @@ public class DeleteRice : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerExit(Collider collider)
     {
-        Destroy(collision.gameObject);
+        count_fallen_object++;
     }
 }

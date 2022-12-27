@@ -12,8 +12,8 @@ public class GameController: MonoBehaviour
     public Gyroscope gyro;
     //threshold for deciding the animation.
     static double TH_large = 3;
-    static double TH_middle = 2;
-    static double TH_small = 1.5;
+    static double TH_middle = 1.2;
+    static double TH_small = 1.1;
     // management variances
     bool gesture_judge_flag = true; // ジェスチャを判定する状態か否か
     public int move_option = 0; // 動かし方を管理する変数
@@ -25,7 +25,11 @@ public class GameController: MonoBehaviour
     private Animator anim;
     // RiceMaster
     private RiceMaster riceMasterScript;
+    public int count_lower = 0;//焦げた回数をカウント
     // Start is called before the first frame update
+
+    public double score;
+
     void Start()
     {
         // 入力にジャイロをONにする
@@ -72,10 +76,10 @@ public class GameController: MonoBehaviour
                 StartCoroutine(changeAnimatorState(1.5f, "AnimationFlag_middle", false));
                 Debug.Log(game_phase_management);
                 chahan_text.text = "Good!";
-                if(game_phase_management == 2){
-                    
+                if(game_phase_management == 2){                   
                     //シーン遷移
-                    Debug.Log("hoge");
+                    score = riceMasterScript.calculatingScore(count_lower);
+                    Debug.Log(score);
                     StartCoroutine(changeScene(2.5f));
                 }else{
                     StartCoroutine(riceMasterScript.riceColorChange(2.5f, game_phase_management));
@@ -84,8 +88,9 @@ public class GameController: MonoBehaviour
                 
                 
             }else if (acc.magnitude > TH_small){
-                
-                    //Debug.Log("small");
+
+                //Debug.Log("small");
+                count_lower++;
                 gesture_judge_flag  = false;
                 move_option = 1;
                 delay_time = 0.6f;
