@@ -5,15 +5,16 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 
-public class RiceMaster : MonoBehaviour
+public class FoodMaster : MonoBehaviour
 {
-    
     // Start is called before the first frame update
     [SerializeField] GameObject rice;
+    [SerializeField] GameObject greenonion;
+    [SerializeField] GameObject meat;
     int riceN = 1000;
+    int greenonionN = 100;
+    int meatN = 50;
     public List<GameObject> ingredient_list = new List<GameObject>();
-
-    GameObject[] rices;
     public Material color1;
     public Material color2;
     public double score;
@@ -31,8 +32,6 @@ public class RiceMaster : MonoBehaviour
             {
                 ingredient_list.Add(Instantiate(rice, new Vector3(rand_x, rand_y, 0.7f), Quaternion.identity));
                 ingredient_list[count].name = "Rice" + count.ToString();
-                //rices[count] = Instantiate(rice, new Vector3(rand_x, rand_y, 0.7f), Quaternion.identity);
-                //rices[count].name = "Rice" + count.ToString();
                 count++;
             }
         }
@@ -58,14 +57,13 @@ public class RiceMaster : MonoBehaviour
         for (int i = 0; i < riceN; i++)
         {
             ingredient_list[i].GetComponent<Renderer>().material.color = rice_color.color;
-            //rices[i].GetComponent<Renderer>().material.color = rice_color.color;
         }
     }
 
     public IEnumerator forceToRice(float delay, bool random_flag, float option, float x, float y, float z){
         Vector3 force;
         yield return new WaitForSeconds(delay);
-        for (int i = 0; i < riceN; i++)
+        for (int i = 0; i < ingredient_list.Count; i++)
         {
             if(random_flag){
                 float force_x = Random.Range(-0.3f, 0.3f);
@@ -76,7 +74,6 @@ public class RiceMaster : MonoBehaviour
                 force = new Vector3(x, y, z);  // 力を設定
             }
             ingredient_list[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
-            //rices[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
         }
     }
 
@@ -85,5 +82,35 @@ public class RiceMaster : MonoBehaviour
     {
         score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * i;
         return score;
+    }
+
+    public void put_meat()
+    {
+        for (int count = 0; count < meatN;)
+        {
+            float rand_x = Random.Range(-0.8f, 0.8f);
+            float rand_y = Random.Range(-0.8f, 0.8f);
+            if (rand_x * rand_x + rand_y * rand_y < 0.6)
+            {
+                ingredient_list.Add(Instantiate(meat, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
+                ingredient_list[count].name = "Meat" + count.ToString();
+                count++;
+            }
+        }
+    }
+
+    public void put_greenonion()
+    {
+        for (int count = 0; count < greenonionN;)
+        {
+            float rand_x = Random.Range(-0.8f, 0.8f);
+            float rand_y = Random.Range(-0.8f, 0.8f);
+            if (rand_x * rand_x + rand_y * rand_y < 0.6)
+            {
+                ingredient_list.Add(Instantiate(greenonion, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
+                ingredient_list[count].name = "GreenOnion" + count.ToString();
+                count++;
+            }
+        }
     }
 }
