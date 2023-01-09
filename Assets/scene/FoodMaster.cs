@@ -11,7 +11,7 @@ public class FoodMaster : MonoBehaviour
     [SerializeField] GameObject rice;
     [SerializeField] GameObject greenonion;
     [SerializeField] GameObject meat;
-    int riceN = 1000;
+    int riceN = 400;
     int greenonionN = 100;
     int meatN = 50;
     public List<GameObject> ingredient_list = new List<GameObject>();
@@ -19,7 +19,6 @@ public class FoodMaster : MonoBehaviour
     public Material color2;
     public double score;
     public DetectionFallenObject detectionFallenObjectScript;
-
     void Start()
     {
         // generate rice
@@ -68,8 +67,9 @@ public class FoodMaster : MonoBehaviour
             if(random_flag){
                 float force_x = Random.Range(-0.3f, 0.3f);
                 float force_y = Random.Range(-0.3f, 0.3f);
-                float force_z = Random.Range(2.0f, 4.0f);
-                force = new Vector3(force_x * option , force_y * option , force_z * option);  // 力を設定
+                float force_z = Random.Range(1.0f, 2.0f);
+                //float force_z = Random.Range(2.0f, 4.0f);
+                force = new Vector3(force_x * option + x, force_y * option + y, force_z * option + z);  // 力を設定
             }else{
                 force = new Vector3(x, y, z);  // 力を設定
             }
