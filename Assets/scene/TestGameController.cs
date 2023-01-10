@@ -14,9 +14,9 @@ public class TestGameController: MonoBehaviour
     public Gyroscope gyro;
     public Vector3 pos;
     //threshold for deciding the flyingpan animation.
-    static double TH_large = 2.2;
-    static double TH_middle = 1.2;
-    static double TH_small = 1.01;
+    double TH_large = 2.2;
+    double TH_middle = 1.2;
+    double TH_small = 1.01;
     
     int count = 0;//
     // management variances
@@ -44,6 +44,8 @@ public class TestGameController: MonoBehaviour
 
     public double score;
 
+
+
     // Audio clip
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
@@ -55,6 +57,7 @@ public class TestGameController: MonoBehaviour
     public Sprite meat_sprite;
     public Sprite egg_sprite;
     public List<Sprite> ingredient_sprite_list = new List<Sprite>();
+    public int difficulty;
     void Start()
     {
         // 入力にジャイロをONにする
@@ -71,6 +74,25 @@ public class TestGameController: MonoBehaviour
         ingredient_sprite_list.Add(greenonion_sprite);
         ingredient_sprite_list.Add(meat_sprite);
         ingredient_sprite_list.Add(egg_sprite);
+        // 難易度取得
+        int difficulty = PlayerPrefs.GetInt("difficulty");
+        Debug.Log(difficulty);
+        if(difficulty == 2){
+            // usual
+            TH_large = 2.2;
+            TH_middle = 1.2;
+            TH_small = 1.01;
+        }else if (difficulty == 1){
+            // easy
+            TH_large = 3.0;
+            TH_middle = 1.4;
+            TH_small = 1.01;
+        }else if (difficulty == 3){
+            // hard
+            TH_large = 2.2;
+            TH_middle = 1.8;
+            TH_small = 1.01;
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
