@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/scene/startScene.unity
     guid: 0812735ac51c5ff46beb6387af8befa6
   - enabled: 1
-    path: Assets/scene/Chahan.unity
+    path: Assets/scene/chahan.unity
     guid: 378d6d1b7d6d91a4f91920bc18e88a82
   m_configObjects: {}
