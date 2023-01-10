@@ -17,9 +17,14 @@ public class FoodMaster : MonoBehaviour
     int meatN = 50;
     int eggN = 200;
     public List<GameObject> ingredient_list = new List<GameObject>();
+    public List<GameObject> ingredient_prefab_list = new List<GameObject>();
     public Material color1;
     public Material color2;
     public double score;
+    int[] ingredientN = new int[3];
+    string[] ingredient_name = {"greenonion", "meat", "egg"};
+
+
 
     public DetectionFallenObject detectionFallenObjectScript;
     void Start()
@@ -37,6 +42,12 @@ public class FoodMaster : MonoBehaviour
                 count++;
             }
         }
+        ingredient_prefab_list.Add(greenonion);
+        ingredientN[0] = greenonionN;
+        ingredient_prefab_list.Add(meat);
+        ingredientN[1] = meatN;
+        ingredient_prefab_list.Add(egg);
+        ingredientN[2] = eggN;
     }
 
 
@@ -89,6 +100,7 @@ public class FoodMaster : MonoBehaviour
         return score;
     }
 
+
     public void put_meat()
     {
         for (int count = 0; count < meatN;)
@@ -122,6 +134,7 @@ public class FoodMaster : MonoBehaviour
             }
         }
     }
+
     public void put_egg()
     {
         for (int count = 0; count < eggN;)
@@ -134,6 +147,23 @@ public class FoodMaster : MonoBehaviour
             {
                 ingredient_list.Add(Instantiate(egg, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
                 ingredient_list[count].name = "Egg" + count.ToString();
+                count++;
+            }
+        }
+    }
+
+    public void put_ingredient(int ingredient_num)
+    {
+        for (int count = 0; count < ingredientN[ingredient_num];)
+        {
+            float rand_x = Random.Range(-0.5f, 0.5f);
+            float rand_y = Random.Range(-0.5f, 0.5f);
+            //float rand_x = Random.Range(-0.8f, 0.8f);
+            //float rand_y = Random.Range(-0.8f, 0.8f);
+            if (rand_x * rand_x + rand_y * rand_y < 0.6)
+            {
+                ingredient_list.Add(Instantiate(ingredient_prefab_list[ingredient_num], new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
+                ingredient_list[count].name = ingredient_name[ingredient_num] + count.ToString();
                 count++;
             }
         }
