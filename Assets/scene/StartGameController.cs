@@ -63,7 +63,7 @@ public class StartGameController : MonoBehaviour
         PlayerPrefs.SetInt("difficulty", diff);
         PlayerPrefs.Save();
 
-        SceneManager.LoadScene("Chahan_test");
+        SceneManager.LoadScene("Chahan");
     }
 
     public void toSelectDifficultyUI(){

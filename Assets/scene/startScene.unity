@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3708984, g: 0.37837017, b: 0.35722536, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -912,7 +912,7 @@ MonoBehaviour:
   start_button: {fileID: 62416607}
   easy_button: {fileID: 2078993093}
   normal_button: {fileID: 1971585737}
-  hard_button: {fileID: 0}
+  hard_button: {fileID: 1227101044}
   difficultyTitle: {fileID: 554282092}
   HowToPlayTitleText: {fileID: 723285383}
   smartphone_hand: {fileID: 484253240}

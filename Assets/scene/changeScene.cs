@@ -18,7 +18,7 @@ public class changeScene : MonoBehaviour
     }
 
     public void toChahanButtonClick(){
-        SceneManager.LoadScene("Chahan_test");
+        SceneManager.LoadScene("Chahan");
     }
     public void toStartButtonClick(){
         SceneManager.LoadScene("startScene");
