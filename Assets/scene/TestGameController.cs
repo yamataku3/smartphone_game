@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
@@ -30,6 +31,7 @@ public class TestGameController: MonoBehaviour
     //[SerializeField] Text Animated_Text;//
     [SerializeField] Button put_onion_button;
     [SerializeField] Button put_meat_button;
+    [SerializeField] Button put_egg_button;
     public float force_ratio;
     float delay_time = 0.0f;
     // Animator
@@ -41,6 +43,10 @@ public class TestGameController: MonoBehaviour
 
     public double score;
 
+    // Audio clip
+    AudioSource audio_source_se;
+    public AudioClip audio_clip_se;
+
     void Start()
     {
         // 入力にジャイロをONにする
@@ -51,7 +57,10 @@ public class TestGameController: MonoBehaviour
         //食材を追加するためのボタン
         put_onion_button.onClick.AddListener(GreenOnionButtonOnClick);
         put_meat_button.onClick.AddListener(MeatButtonOnClick);
-
+        put_egg_button.onClick.AddListener(EggButtonOnClick);
+        // オーディオ
+        audio_source_se = GetComponent<AudioSource>();
+        
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -65,7 +74,7 @@ public class TestGameController: MonoBehaviour
                 gesture_judge_flag = false;
                 move_flyingpan_flag = true;
                 move_option = 3;
-                
+
                 force_ratio = 2.0f;
                 Debug.Log("Large");
                 Debug.Log(acc.z + 1);
@@ -74,12 +83,12 @@ public class TestGameController: MonoBehaviour
                 StartCoroutine(foodMasterScript.forceToRice(0.1f, true, force_ratio, 0, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.2f, false, force_ratio, 4.0f, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.27f, false, force_ratio, 0, 0, 0));
+                audio_source_se.PlayOneShot(audio_clip_se);
+                
                 // 元のテキストを消す
-                //chahan_text.enabled = false;
+                //chahan_text.enabled = false
                 //Animated_Text.text = "Too strong...";
                 chahan_text.text = "Too strong...";
-
-
             }else if (acc.z + 1 > TH_middle){
                 gesture_judge_flag  = false;
                 move_flyingpan_flag = true;
@@ -93,6 +102,7 @@ public class TestGameController: MonoBehaviour
                 StartCoroutine(foodMasterScript.forceToRice(0.0f, false, force_ratio, -2.5f, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.1f, true, force_ratio, 0, 0, 0.2f));
                 StartCoroutine(foodMasterScript.forceToRice(0.2f, false, force_ratio, 2.0f, 0, 0));
+                audio_source_se.PlayOneShot(audio_clip_se);
                 StartCoroutine(foodMasterScript.forceToRice(0.27f, false, force_ratio, 0, 0, 0));
                 // 元のテキストを消す
                 //chahan_text.enabled = false;
@@ -108,7 +118,6 @@ public class TestGameController: MonoBehaviour
                     //シーン遷移
                     StartCoroutine(changeScene(1.0f));
                 }
-
                 count_middle++;
 
                 if (count_middle % 3 == 0){
@@ -123,8 +132,7 @@ public class TestGameController: MonoBehaviour
                 count_lower++;
                 force_ratio = 1.0f;
                 Debug.Log("Small");
-                Debug.Log(acc.z + 1);
-
+                audio_source_se.PlayOneShot(audio_clip_se);
                 // 具材の物理演算
                 StartCoroutine(foodMasterScript.forceToRice(0.0f, false, force_ratio, -1.5f, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.1f, true, force_ratio, 0, 0, 0.2f));
@@ -133,7 +141,6 @@ public class TestGameController: MonoBehaviour
                 // 元のテキストを消す
                 //chahan_text.enabled = false;
                 chahan_text.text = "Too week...";
-
 
             }
         }
@@ -202,12 +209,19 @@ public class TestGameController: MonoBehaviour
         Debug.Log("meat");
         foodMasterScript.put_meat();
     }
+    public void EggButtonOnClick()
+    {
+        Debug.Log("meat");
+        foodMasterScript.put_egg();
+    }
+    
 
     IEnumerator changeState(float delay){
         yield return new WaitForSeconds(delay);
         gesture_judge_flag  = true;
         move_flyingpan_flag = false;
         move_flyingpan_mode = 0;
+        audio_source_se.Stop();
 
         //表示テキストの変更
         int times = 10 - count_middle;

@@ -11,13 +11,16 @@ public class FoodMaster : MonoBehaviour
     [SerializeField] GameObject rice;
     [SerializeField] GameObject greenonion;
     [SerializeField] GameObject meat;
+    [SerializeField] GameObject egg;
     int riceN = 400;
     int greenonionN = 100;
     int meatN = 50;
+    int eggN = 200;
     public List<GameObject> ingredient_list = new List<GameObject>();
     public Material color1;
     public Material color2;
     public double score;
+
     public DetectionFallenObject detectionFallenObjectScript;
     void Start()
     {
@@ -51,7 +54,9 @@ public class FoodMaster : MonoBehaviour
         if(state == 0){
             rice_color = color1;
         }else{
-            rice_color = color2;  
+         
+         float rand_x = Random.Range(-0.5f, 0.5f);
+            float rand_y = Random.Range(-0.5f, 0.5f);   rice_color = color2;  
         }
         for (int i = 0; i < riceN; i++)
         {
@@ -88,8 +93,10 @@ public class FoodMaster : MonoBehaviour
     {
         for (int count = 0; count < meatN;)
         {
-            float rand_x = Random.Range(-0.8f, 0.8f);
-            float rand_y = Random.Range(-0.8f, 0.8f);
+            float rand_x = Random.Range(-0.5f, 0.5f);
+            float rand_y = Random.Range(-0.5f, 0.5f);
+            //float rand_x = Random.Range(-0.8f, 0.8f);
+            //float rand_y = Random.Range(-0.8f, 0.8f);
             if (rand_x * rand_x + rand_y * rand_y < 0.6)
             {
                 ingredient_list.Add(Instantiate(meat, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
@@ -103,12 +110,30 @@ public class FoodMaster : MonoBehaviour
     {
         for (int count = 0; count < greenonionN;)
         {
-            float rand_x = Random.Range(-0.8f, 0.8f);
-            float rand_y = Random.Range(-0.8f, 0.8f);
+            float rand_x = Random.Range(-0.5f, 0.5f);
+            float rand_y = Random.Range(-0.5f, 0.5f);
+            //float rand_x = Random.Range(-0.8f, 0.8f);
+            //float rand_y = Random.Range(-0.8f, 0.8f);
             if (rand_x * rand_x + rand_y * rand_y < 0.6)
             {
                 ingredient_list.Add(Instantiate(greenonion, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
                 ingredient_list[count].name = "GreenOnion" + count.ToString();
+                count++;
+            }
+        }
+    }
+    public void put_egg()
+    {
+        for (int count = 0; count < eggN;)
+        {
+            float rand_x = Random.Range(-0.5f, 0.5f);
+            float rand_y = Random.Range(-0.5f, 0.5f);
+            //float rand_x = Random.Range(-0.8f, 0.8f);
+            //float rand_y = Random.Range(-0.8f, 0.8f);
+            if (rand_x * rand_x + rand_y * rand_y < 0.6)
+            {
+                ingredient_list.Add(Instantiate(egg, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
+                ingredient_list[count].name = "Egg" + count.ToString();
                 count++;
             }
         }

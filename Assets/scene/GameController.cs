@@ -173,6 +173,12 @@ public class GameController: MonoBehaviour
         Debug.Log("meat");
         foodMasterScript.put_meat();
     }
+    
+    public void EggButtonOnClick()
+    {
+        Debug.Log("egg");
+        foodMasterScript.put_egg();
+    }
 
 }
 
