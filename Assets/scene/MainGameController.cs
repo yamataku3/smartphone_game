@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 
 // get sensor data
-public class TestGameController: MonoBehaviour
+public class MainGameController: MonoBehaviour
 {
     // the variance of getting sensor data.
     public Vector3 acc;
