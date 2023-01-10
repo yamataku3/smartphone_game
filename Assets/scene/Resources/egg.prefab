@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7233603351461482495}
   - component: {fileID: 6476258295808190831}
   m_Layer: 0
-  m_Name: greenonion
+  m_Name: egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7271865315825342705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.02, y: 0.04, z: 0.002}
+  m_LocalScale: {x: 0.03, y: 0.02, z: 0.002}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f181b8afa70ddff47a04aef4f3a43af8, type: 2}
+  - {fileID: 2100000, guid: f0122a75c46d4664bba2ba2df432cc9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
