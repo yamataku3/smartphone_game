@@ -14,9 +14,9 @@ public class TestGameController: MonoBehaviour
     public Gyroscope gyro;
     public Vector3 pos;
     //threshold for deciding the flyingpan animation.
-    static double TH_large = 2.2;
-    static double TH_middle = 1.2;
-    static double TH_small = 1.01;
+    double TH_large = 2.2;
+    double TH_middle = 1.2;
+    double TH_small = 1.01;
     
     int count = 0;//
     // management variances
@@ -43,10 +43,13 @@ public class TestGameController: MonoBehaviour
 
     public double score;
 
+
+
     // Audio clip
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
 
+    public int difficulty;
     void Start()
     {
         // 入力にジャイロをONにする
@@ -60,6 +63,27 @@ public class TestGameController: MonoBehaviour
         put_egg_button.onClick.AddListener(EggButtonOnClick);
         // オーディオ
         audio_source_se = GetComponent<AudioSource>();
+        
+        // 難易度取得
+        int difficulty = PlayerPrefs.GetInt("difficulty");
+        Debug.Log(difficulty);
+        if(difficulty == 2){
+            // usual
+            TH_large = 2.2;
+            TH_middle = 1.2;
+            TH_small = 1.01;
+        }else if (difficulty == 1){
+            // easy
+            TH_large = 3.0;
+            TH_middle = 1.4;
+            TH_small = 1.01;
+        }else if (difficulty == 3){
+            // hard
+            TH_large = 2.2;
+            TH_middle = 1.8;
+            TH_small = 1.01;
+        }
+
         
     }
     // Update is called once per frame

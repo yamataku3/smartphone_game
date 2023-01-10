@@ -23,4 +23,5 @@ public class changeScene : MonoBehaviour
     public void toStartButtonClick(){
         SceneManager.LoadScene("startScene");
     }
+    
 }
