@@ -13,9 +13,9 @@ public class TestGameController: MonoBehaviour
     public Gyroscope gyro;
     public Vector3 pos;
     //threshold for deciding the flyingpan animation.
-    static double TH_large = 3;
-    static double TH_middle = 1.8;
-    static double TH_small = 1.2;
+    static double TH_large = 2.2;
+    static double TH_middle = 1.2;
+    static double TH_small = 1.01;
     
     int count = 0;//
     // management variances
@@ -37,6 +37,7 @@ public class TestGameController: MonoBehaviour
     // FoodMaster
     private FoodMaster foodMasterScript;
     public int count_lower = 0;//焦げた回数をカウント
+    public int count_middle = 0;
 
     public double score;
 
@@ -60,37 +61,44 @@ public class TestGameController: MonoBehaviour
         pos = this.gameObject.transform.position;
         //ジェスチャ判定する時
         if(gesture_judge_flag){
-            if (acc.z > TH_large - 1){
+            if (acc.z + 1> TH_large){
                 gesture_judge_flag = false;
                 move_flyingpan_flag = true;
                 move_option = 3;
                 
                 force_ratio = 2.0f;
                 Debug.Log("Large");
+                Debug.Log(acc.z + 1);
                 // 具材の物理演算
-                StartCoroutine(foodMasterScript.forceToRice(0.0f, false, force_ratio, -3.5f, 0, 0));
+                StartCoroutine(foodMasterScript.forceToRice(0.0f, false, force_ratio, -4.5f, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.1f, true, force_ratio, 0, 0, 0));
-                StartCoroutine(foodMasterScript.forceToRice(0.2f, false, force_ratio, 3.0f, 0, 0));
+                StartCoroutine(foodMasterScript.forceToRice(0.2f, false, force_ratio, 4.0f, 0, 0));
+                StartCoroutine(foodMasterScript.forceToRice(0.27f, false, force_ratio, 0, 0, 0));
                 // 元のテキストを消す
-                chahan_text.enabled = false;
+                //chahan_text.enabled = false;
                 //Animated_Text.text = "Too strong...";
+                chahan_text.text = "Too strong...";
 
 
-            }else if (acc.z > TH_middle - 1){
+            }else if (acc.z + 1 > TH_middle){
                 gesture_judge_flag  = false;
                 move_flyingpan_flag = true;
                 move_option = 2;
                 
                 force_ratio = 1.3f;
                 Debug.Log("Middle");
+                Debug.Log(acc.z + 1);
                 
                 // 具材の物理演算
                 StartCoroutine(foodMasterScript.forceToRice(0.0f, false, force_ratio, -2.5f, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.1f, true, force_ratio, 0, 0, 0.2f));
                 StartCoroutine(foodMasterScript.forceToRice(0.2f, false, force_ratio, 2.0f, 0, 0));
-                chahan_text.enabled = false;
+                StartCoroutine(foodMasterScript.forceToRice(0.27f, false, force_ratio, 0, 0, 0));
+                // 元のテキストを消す
+                //chahan_text.enabled = false;
+                chahan_text.text = "Very Good!!!";
 
-                if(game_phase_management == 2){                   
+                if(game_phase_management == 3){                   
                     // score計算
                     score = foodMasterScript.calculatingScore(count_lower);
                     Debug.Log(score);
@@ -99,25 +107,32 @@ public class TestGameController: MonoBehaviour
                     PlayerPrefs.Save();
                     //シーン遷移
                     StartCoroutine(changeScene(1.0f));
-                }else{
-                    StartCoroutine(foodMasterScript.riceColorChange(0.5f, game_phase_management));
                 }
-                game_phase_management++;
 
+                count_middle++;
+
+                if (count_middle % 3 == 0){
+                    StartCoroutine(foodMasterScript.riceColorChange(0.5f, game_phase_management));
+                    game_phase_management++;
+                }
                 
-            }else if (acc.z > TH_small - 1){
+            }else if (acc.z + 1 > TH_small){
                 gesture_judge_flag  = false;
                 move_flyingpan_flag = true;
                 move_option = 1;
                 count_lower++;
                 force_ratio = 1.0f;
                 Debug.Log("Small");
+                Debug.Log(acc.z + 1);
 
                 // 具材の物理演算
                 StartCoroutine(foodMasterScript.forceToRice(0.0f, false, force_ratio, -1.5f, 0, 0));
                 StartCoroutine(foodMasterScript.forceToRice(0.1f, true, force_ratio, 0, 0, 0.2f));
                 StartCoroutine(foodMasterScript.forceToRice(0.2f, false, force_ratio, 1.0f, 0, 0));
-                chahan_text.enabled = false;
+                StartCoroutine(foodMasterScript.forceToRice(0.27f, false, force_ratio, 0, 0, 0));
+                // 元のテキストを消す
+                //chahan_text.enabled = false;
+                chahan_text.text = "Too week...";
 
 
             }
@@ -195,7 +210,7 @@ public class TestGameController: MonoBehaviour
         move_flyingpan_mode = 0;
 
         //表示テキストの変更
-        int times = 3 - game_phase_management;
+        int times = 10 - count_middle;
         chahan_text.enabled = true;
         chahan_text.text = "Shake your smartphone\n(" + times + "times)";
         
