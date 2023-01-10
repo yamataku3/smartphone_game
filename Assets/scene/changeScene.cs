@@ -23,5 +23,10 @@ public class changeScene : MonoBehaviour
     public void toStartButtonClick(){
         SceneManager.LoadScene("startScene");
     }
+    public void BackToRetry(){
+        PlayerPrefs.SetInt("retry_mode", 1);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("startScene");
+    }
     
 }

@@ -23,6 +23,8 @@ public class StartGameController : MonoBehaviour
     GameObject easy_button_object;
     GameObject normal_button_object;
     GameObject hard_button_object;
+
+    int retry_mode = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -48,9 +50,11 @@ public class StartGameController : MonoBehaviour
         easy_button.onClick.AddListener(() => toChahanButtonClick(1));
         normal_button.onClick.AddListener(() => toChahanButtonClick(2));
         hard_button.onClick.AddListener(() => toChahanButtonClick(3));
-        
 
-
+        retry_mode =  PlayerPrefs.GetInt("retry_mode", 0);
+        if(retry_mode == 1){
+            toSelectDifficultyUI();
+        }
     }
 
     // Update is called once per frame
@@ -62,7 +66,6 @@ public class StartGameController : MonoBehaviour
     public void toChahanButtonClick(int diff){
         PlayerPrefs.SetInt("difficulty", diff);
         PlayerPrefs.Save();
-
         SceneManager.LoadScene("Chahan");
     }
 
