@@ -29,9 +29,10 @@ public class TestGameController: MonoBehaviour
     
     [SerializeField] Text chahan_text;// text
     //[SerializeField] Text Animated_Text;//
-    [SerializeField] Button put_onion_button;
-    [SerializeField] Button put_meat_button;
-    [SerializeField] Button put_egg_button;
+    [SerializeField] Button put_ingredient_button;
+    [SerializeField] Button left_button;
+    [SerializeField] Button right_button;
+
     public float force_ratio;
     float delay_time = 0.0f;
     // Animator
@@ -49,6 +50,13 @@ public class TestGameController: MonoBehaviour
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
 
+    public List<string> adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg" };
+    public int ingredient_index = 0;
+
+    public Sprite greenonion_sprite;
+    public Sprite meat_sprite;
+    public Sprite egg_sprite;
+    public List<Sprite> ingredient_sprite_list = new List<Sprite>();
     public int difficulty;
     void Start()
     {
@@ -58,12 +66,14 @@ public class TestGameController: MonoBehaviour
         // get the FoodMaster
         foodMasterScript= GameObject.Find("GameObject").GetComponent<FoodMaster>();
         //食材を追加するためのボタン
-        put_onion_button.onClick.AddListener(GreenOnionButtonOnClick);
-        put_meat_button.onClick.AddListener(MeatButtonOnClick);
-        put_egg_button.onClick.AddListener(EggButtonOnClick);
+        put_ingredient_button.onClick.AddListener(IngredientButtonOnClick);
+        left_button.onClick.AddListener(LeftButtonOnClick);
+        right_button.onClick.AddListener(RightButtonOnClick);
         // オーディオ
         audio_source_se = GetComponent<AudioSource>();
-        
+        ingredient_sprite_list.Add(greenonion_sprite);
+        ingredient_sprite_list.Add(meat_sprite);
+        ingredient_sprite_list.Add(egg_sprite);
         // 難易度取得
         int difficulty = PlayerPrefs.GetInt("difficulty");
         Debug.Log(difficulty);
@@ -83,8 +93,6 @@ public class TestGameController: MonoBehaviour
             TH_middle = 1.8;
             TH_small = 1.01;
         }
-
-        
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -223,20 +231,30 @@ public class TestGameController: MonoBehaviour
             }
         }		
     }
-    public void GreenOnionButtonOnClick()
-    {
-        Debug.Log("onion");
-        foodMasterScript.put_greenonion();
-    }
-    public void MeatButtonOnClick()
+
+    public void IngredientButtonOnClick()
     {
         Debug.Log("meat");
-        foodMasterScript.put_meat();
+        foodMasterScript.put_ingredient(ingredient_index);
     }
-    public void EggButtonOnClick()
+    public void LeftButtonOnClick()
     {
-        Debug.Log("meat");
-        foodMasterScript.put_egg();
+        ingredient_index -= 1;
+        if (ingredient_index < 0){
+            ingredient_index = adding_ingredient_list.Count - 1;
+        }
+        put_ingredient_button.GetComponent<Image>().sprite = ingredient_sprite_list[ingredient_index]; 
+        Debug.Log("left");
+    }
+
+    public void RightButtonOnClick()
+    {
+        ingredient_index += 1;
+        if (ingredient_index > adding_ingredient_list.Count - 1){
+            ingredient_index = 0;
+        }
+        put_ingredient_button.GetComponent<Image>().sprite = ingredient_sprite_list[ingredient_index];       
+        Debug.Log("right");
     }
     
 
