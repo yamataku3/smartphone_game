@@ -58,11 +58,13 @@ public class MainGameController: MonoBehaviour
     public Sprite meat_sprite;
     public Sprite egg_sprite;
     public Sprite shrimp_sprite;
+    public Sprite kimchi_sprite;
+    public Sprite crab_sprite;
     public List<Sprite> ingredient_sprite_list = new List<Sprite>();
     public int difficulty;
     void Start()
     {
-        adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg", "shrimp"};
+        adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg", "shrimp", "crab", "kimchi"};
         //Debug.Log(adding_ingredient_list.Count);
         // 入力にジャイロをONにする
         Input.gyro.enabled = true;
@@ -79,6 +81,9 @@ public class MainGameController: MonoBehaviour
         ingredient_sprite_list.Add(meat_sprite);
         ingredient_sprite_list.Add(egg_sprite);
         ingredient_sprite_list.Add(shrimp_sprite);
+        ingredient_sprite_list.Add(crab_sprite);
+        ingredient_sprite_list.Add(kimchi_sprite);
+        
         // 難易度取得
         int difficulty = PlayerPrefs.GetInt("difficulty");
         //Debug.Log(difficulty);
@@ -244,6 +249,10 @@ public class MainGameController: MonoBehaviour
         count_ingredient++;
         if (count_ingredient >= 3){
             put_ingredient_button.interactable = false;
+        }
+        //キムチが追加された場合コメの色を赤くする
+        if (ingredient_index == adding_ingredient_list.Count - 1){
+            StartCoroutine(foodMasterScript.riceColorChange(0.5f, game_phase_management - 1));
         }
     }
     public void LeftButtonOnClick()
