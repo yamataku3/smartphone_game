@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.446577, g: 0.49641138, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4440222, g: 0.49316168, b: 0.5722313, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -323,12 +323,14 @@ MonoBehaviour:
   meat: {fileID: 5075967464664134087, guid: ed19dcecc2855074eb9cf54ba8ab94a1, type: 3}
   egg: {fileID: 7271865315825342705, guid: e2398fe31ec00f94792d84da58461a0f, type: 3}
   shrimp: {fileID: 220621433114282272, guid: 84372e8a5c70edc44aa06122d0474c1c, type: 3}
+  kimchi: {fileID: 0}
   ingredient_list: []
   ingredient_prefab_list: []
   color1: {fileID: 2100000, guid: 753c534679cf6b749ac104e43ecc88c2, type: 2}
   color2: {fileID: 2100000, guid: d571276358e8c4743a57df8cfb89b3ea, type: 2}
   score: 0
   ingredient_count: 0
+  is_each_ingredient_contains: 0000000000
   detectionFallenObjectScript: {fileID: 1777907060}
 --- !u!4 &243535741
 Transform:
@@ -719,7 +721,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -200}
-  m_SizeDelta: {x: 800, y: 100}
+  m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &598309008
 MonoBehaviour:
@@ -743,7 +745,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: f2955dcbfa654a6419f0299b620442f5, type: 3}
-    m_FontSize: 36
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1959,7 +1961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
