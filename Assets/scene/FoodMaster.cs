@@ -18,26 +18,33 @@ public class FoodMaster : MonoBehaviour
     [SerializeField] GameObject egg;
     [SerializeField] GameObject shrimp;
     [SerializeField] GameObject kimchi;
+    [SerializeField] GameObject crab;
     int riceN = 400;
     int greenonionN = 100;
     int meatN = 50;
     int eggN = 200;
     int shrimpN = 30;
     int kimchiN = 30;
+    int crabN = 30;
     public List<GameObject> ingredient_list = new List<GameObject>();//実際に何が入っているか
     public List<GameObject> ingredient_prefab_list = new List<GameObject>();//prefabのリスト
     public Material color1;
     public Material color2;
+    public Material color_kimchi0;
+    public Material color_kimchi1;
+    public Material color_kimchi2;
     public double score;
     int[] ingredientN;
-    string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp", "kimchi"};
+    string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp", "crab", "kimchi"};
+    public bool[] is_each_ingredient_contains;
     public int ingredient_count = 0;//食材の数　( 米200 + ネギ100で300みたいな)
-    public bool[] is_each_ingredient_contains = {false, false, false, false, false};
 
     public DetectionFallenObject detectionFallenObjectScript;
     void Start()
     {
         ingredientN = new int[ingredient_name.Length];
+
+        is_each_ingredient_contains = new bool[6]{false, false, false, false, false, false};
         // generate rice
         //rices = new GameObject[riceN];
         for (int count = 0; count < riceN;)
@@ -61,8 +68,11 @@ public class FoodMaster : MonoBehaviour
         ingredientN[2] = eggN;
         ingredient_prefab_list.Add(shrimp);
         ingredientN[3] = shrimpN;
+        ingredient_prefab_list.Add(crab);
+        ingredientN[4] = crabN;
         ingredient_prefab_list.Add(kimchi);
-        ingredientN[4] = kimchiN;
+        ingredientN[5] = kimchiN;
+        
     }
 
 
@@ -73,17 +83,23 @@ public class FoodMaster : MonoBehaviour
     
     public IEnumerator riceColorChange(float delay, int state)
     {
-        Debug.Log("test");
         //delay秒待つ
         Material rice_color;
         yield return new WaitForSeconds(delay);
         if(state == 0){
-            rice_color = color1;
+            if (is_each_ingredient_contains[is_each_ingredient_contains.Length - 1]){
+                rice_color = color_kimchi1;
+            }else{
+                rice_color = color1;
+            }
+        }else if (state == 1){  
+            if (is_each_ingredient_contains[is_each_ingredient_contains.Length - 1]){
+                rice_color = color_kimchi2;
+            }else{
+                rice_color = color2;
+            }
         }else{
-         
-            float rand_x = Random.Range(-0.5f, 0.5f);
-            float rand_y = Random.Range(-0.5f, 0.5f);   
-            rice_color = color2;  
+            rice_color = color_kimchi0;
         }
         for (int i = 0; i < riceN; i++)
         {
@@ -146,59 +162,6 @@ public class FoodMaster : MonoBehaviour
         return System.Math.Max(score, 0);;
     }
 
-    /*
-    public void put_meat()
-    {
-        for (int count = 0; count < meatN;)
-        {
-            float rand_x = Random.Range(-0.5f, 0.5f);
-            float rand_y = Random.Range(-0.5f, 0.5f);
-            //float rand_x = Random.Range(-0.8f, 0.8f);
-            //float rand_y = Random.Range(-0.8f, 0.8f);
-            if (rand_x * rand_x + rand_y * rand_y < 0.6)
-            {
-                ingredient_list.Add(Instantiate(meat, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
-                ingredient_list[count].name = "Meat" + count.ToString();
-                count++;
-            }
-        }
-    }
-
-    public void put_greenonion()
-    {
-        for (int count = 0; count < greenonionN;)
-        {
-            float rand_x = Random.Range(-0.5f, 0.5f);
-            float rand_y = Random.Range(-0.5f, 0.5f);
-            //float rand_x = Random.Range(-0.8f, 0.8f);
-            //float rand_y = Random.Range(-0.8f, 0.8f);
-            if (rand_x * rand_x + rand_y * rand_y < 0.6)
-            {
-                ingredient_list.Add(Instantiate(greenonion, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
-                ingredient_list[count].name = "GreenOnion" + count.ToString();
-                count++;
-            }
-        }
-    }
-
-    public void put_egg()
-    {
-        for (int count = 0; count < eggN;)
-        {
-            float rand_x = Random.Range(-0.5f, 0.5f);
-            float rand_y = Random.Range(-0.5f, 0.5f);
-            //float rand_x = Random.Range(-0.8f, 0.8f);
-            //float rand_y = Random.Range(-0.8f, 0.8f);
-            if (rand_x * rand_x + rand_y * rand_y < 0.6)
-            {
-                ingredient_list.Add(Instantiate(egg, new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
-                ingredient_list[count].name = "Egg" + count.ToString();
-                count++;
-            }
-        }
-    }
-    */
-
     public void put_ingredient(int ingredient_index)
     {
         for (int count = 0; count < ingredientN[ingredient_index];)
@@ -216,7 +179,6 @@ public class FoodMaster : MonoBehaviour
             }
         }
         is_each_ingredient_contains[ingredient_index] = true;
-
         //ingredient_list = ingredient_list.OrderBy(a => Guid.NewGuid()).ToList();
     }
 

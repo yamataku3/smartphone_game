@@ -323,11 +323,15 @@ MonoBehaviour:
   meat: {fileID: 5075967464664134087, guid: ed19dcecc2855074eb9cf54ba8ab94a1, type: 3}
   egg: {fileID: 7271865315825342705, guid: e2398fe31ec00f94792d84da58461a0f, type: 3}
   shrimp: {fileID: 220621433114282272, guid: 84372e8a5c70edc44aa06122d0474c1c, type: 3}
-  kimchi: {fileID: 0}
+  kimchi: {fileID: 7271865315825342705, guid: 3ad2655710efc064ca0f5c684c0a10a4, type: 3}
+  crab: {fileID: 7271865315825342705, guid: 9a55655e1ca7a1147828de28471ac7cb, type: 3}
   ingredient_list: []
   ingredient_prefab_list: []
   color1: {fileID: 2100000, guid: 753c534679cf6b749ac104e43ecc88c2, type: 2}
   color2: {fileID: 2100000, guid: d571276358e8c4743a57df8cfb89b3ea, type: 2}
+  color_kimchi0: {fileID: 2100000, guid: e36e90eb077f8754082eefffc82673f2, type: 2}
+  color_kimchi1: {fileID: 2100000, guid: a590767cf65555843b1da92f48c2a9c0, type: 2}
+  color_kimchi2: {fileID: 2100000, guid: 84638368cfd992642b0a1beff602ea3a, type: 2}
   score: 0
   ingredient_count: 0
   is_each_ingredient_contains: 0000000000
@@ -1080,6 +1084,8 @@ MonoBehaviour:
   meat_sprite: {fileID: 21300000, guid: 7da4ac6984ad14f408c11f81338cced8, type: 3}
   egg_sprite: {fileID: 21300000, guid: a3a7f1aa0863bda4f9ffac5a650b3922, type: 3}
   shrimp_sprite: {fileID: 21300000, guid: 6d3b0194b7e13364f93233944764e6ea, type: 3}
+  kimchi_sprite: {fileID: 21300000, guid: 5beb53ee259eaad45b347035bbcb497f, type: 3}
+  crab_sprite: {fileID: 21300000, guid: 62725d2e5abc5704f9c937344c0f752f, type: 3}
   ingredient_sprite_list: []
   difficulty: 0
 --- !u!82 &1334482501
@@ -1555,7 +1561,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 180, y: -500}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551097637
 MonoBehaviour:
@@ -1817,7 +1823,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -180, y: -500}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786026043
 MonoBehaviour:
