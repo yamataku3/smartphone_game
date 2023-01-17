@@ -27,11 +27,9 @@ public class EndGameController : MonoBehaviour
     }
     
     public void toStartButtonClick(){
-        SceneManager.LoadScene("startScene");
+        SceneManager.LoadScene("start");
     }
     public void BackToRetry(){
-        PlayerPrefs.SetInt("retry_mode", 1);
-        PlayerPrefs.Save();
-        SceneManager.LoadScene("startScene");
+        SceneManager.LoadScene("SelectDiff");
     }
 }
