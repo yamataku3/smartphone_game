@@ -172,7 +172,7 @@ public class MainGameController: MonoBehaviour
                     PlayerPrefs.SetInt("Minutes", (int)ts.Minutes);
                     PlayerPrefs.SetInt("Seconds", (int)ts.Seconds);
                     PlayerPrefs.SetString("fried_rice_type", foodMasterScript.finished_fried_rice_type_decision());
-                    Debug.Log(foodMasterScript.finished_fried_rice_type_decision())
+                    Debug.Log(foodMasterScript.finished_fried_rice_type_decision());
                     PlayerPrefs.Save();
                     
                     //シーン遷移
