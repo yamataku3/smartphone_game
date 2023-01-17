@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4440222, g: 0.49316168, b: 0.5722313, a: 1}
+  m_IndirectSpecularColor: {r: 0.446577, g: 0.49641138, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -322,11 +322,13 @@ MonoBehaviour:
     type: 3}
   meat: {fileID: 5075967464664134087, guid: ed19dcecc2855074eb9cf54ba8ab94a1, type: 3}
   egg: {fileID: 7271865315825342705, guid: e2398fe31ec00f94792d84da58461a0f, type: 3}
+  shrimp: {fileID: 220621433114282272, guid: 84372e8a5c70edc44aa06122d0474c1c, type: 3}
   ingredient_list: []
   ingredient_prefab_list: []
   color1: {fileID: 2100000, guid: 753c534679cf6b749ac104e43ecc88c2, type: 2}
   color2: {fileID: 2100000, guid: d571276358e8c4743a57df8cfb89b3ea, type: 2}
   score: 0
+  ingredient_count: 0
   detectionFallenObjectScript: {fileID: 1777907060}
 --- !u!4 &243535741
 Transform:
@@ -1064,6 +1066,7 @@ MonoBehaviour:
   force_ratio: 0
   count_lower: 0
   count_middle: 0
+  count_ingredient: 0
   score: 0
   audio_clip_se: {fileID: 8300000, guid: 185f2f5e808f913449dfe4b9ce490b3f, type: 3}
   adding_ingredient_list:
@@ -1074,7 +1077,9 @@ MonoBehaviour:
   greenonion_sprite: {fileID: 21300000, guid: ae705d9063fc28b4193962788bd8864c, type: 3}
   meat_sprite: {fileID: 21300000, guid: 7da4ac6984ad14f408c11f81338cced8, type: 3}
   egg_sprite: {fileID: 21300000, guid: a3a7f1aa0863bda4f9ffac5a650b3922, type: 3}
+  shrimp_sprite: {fileID: 21300000, guid: 6d3b0194b7e13364f93233944764e6ea, type: 3}
   ingredient_sprite_list: []
+  difficulty: 0
 --- !u!82 &1334482501
 AudioSource:
   m_ObjectHideFlags: 0

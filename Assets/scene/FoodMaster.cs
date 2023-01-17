@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Linq;
+using System;
+using Random = UnityEngine.Random;
+using System.Text.RegularExpressions;
 
 
 public class FoodMaster : MonoBehaviour
@@ -12,19 +16,21 @@ public class FoodMaster : MonoBehaviour
     [SerializeField] GameObject greenonion;
     [SerializeField] GameObject meat;
     [SerializeField] GameObject egg;
+    [SerializeField] GameObject shrimp;
     int riceN = 400;
     int greenonionN = 100;
     int meatN = 50;
     int eggN = 200;
+    int shrimpN = 30;
     public List<GameObject> ingredient_list = new List<GameObject>();
     public List<GameObject> ingredient_prefab_list = new List<GameObject>();
     public Material color1;
     public Material color2;
     public double score;
-    int[] ingredientN = new int[3];
-    string[] ingredient_name = {"greenonion", "meat", "egg"};
-
-
+    int[] ingredientN = new int[4];
+    string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp"};
+    public int ingredient_count = 0;
+    public bool[] is_each_ingredient_contains = {false, false, false, false};
 
     public DetectionFallenObject detectionFallenObjectScript;
     void Start()
@@ -48,6 +54,9 @@ public class FoodMaster : MonoBehaviour
         ingredientN[1] = meatN;
         ingredient_prefab_list.Add(egg);
         ingredientN[2] = eggN;
+        ingredient_prefab_list.Add(shrimp);
+        ingredientN[3] = shrimpN;
+        
     }
 
 
@@ -71,6 +80,11 @@ public class FoodMaster : MonoBehaviour
         }
         for (int i = 0; i < riceN; i++)
         {
+            /*
+            Debug.Log(ingredient_list[i].name);
+            if (Regex.IsMatch(ingredient_list[i].name, "Rice")){
+                ingredient_list[i].GetComponent<Renderer>().material.color = rice_color.color;
+            }*/
             ingredient_list[i].GetComponent<Renderer>().material.color = rice_color.color;
         }
     }
@@ -96,8 +110,8 @@ public class FoodMaster : MonoBehaviour
     //得点を計算
     public double calculatingScore(int i)
     {
-        score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * i;
-        return score;
+        score = 10 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * i;
+        return System.Math.Max(score, 0);;
     }
 
 
@@ -163,9 +177,12 @@ public class FoodMaster : MonoBehaviour
             if (rand_x * rand_x + rand_y * rand_y < 0.6)
             {
                 ingredient_list.Add(Instantiate(ingredient_prefab_list[ingredient_num], new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
-                ingredient_list[count].name = ingredient_name[ingredient_num] + count.ToString();
+                ingredient_list[ingredient_count].name = ingredient_name[ingredient_num] + ingredient_count.ToString();
+                ingredient_count++;
                 count++;
             }
         }
+
+        //ingredient_list = ingredient_list.OrderBy(a => Guid.NewGuid()).ToList();
     }
 }

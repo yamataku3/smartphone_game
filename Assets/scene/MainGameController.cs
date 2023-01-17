@@ -41,6 +41,7 @@ public class MainGameController: MonoBehaviour
     private FoodMaster foodMasterScript;
     public int count_lower = 0;//焦げた回数をカウント
     public int count_middle = 0;
+    public int count_ingredient = 0;
 
     public double score;
 
@@ -50,12 +51,13 @@ public class MainGameController: MonoBehaviour
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
 
-    public List<string> adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg" };
+    public List<string> adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg", "shrimp"};
     public int ingredient_index = 0;
 
     public Sprite greenonion_sprite;
     public Sprite meat_sprite;
     public Sprite egg_sprite;
+    public Sprite shrimp_sprite;
     public List<Sprite> ingredient_sprite_list = new List<Sprite>();
     public int difficulty;
     void Start()
@@ -74,6 +76,7 @@ public class MainGameController: MonoBehaviour
         ingredient_sprite_list.Add(greenonion_sprite);
         ingredient_sprite_list.Add(meat_sprite);
         ingredient_sprite_list.Add(egg_sprite);
+        ingredient_sprite_list.Add(shrimp_sprite);
         // 難易度取得
         int difficulty = PlayerPrefs.GetInt("difficulty");
         Debug.Log(difficulty);
@@ -234,14 +237,18 @@ public class MainGameController: MonoBehaviour
 
     public void IngredientButtonOnClick()
     {
-        Debug.Log("meat");
+        Debug.Log(adding_ingredient_list.Count);
         foodMasterScript.put_ingredient(ingredient_index);
+        count_ingredient++;
+        if (count_ingredient >= 3){
+            put_ingredient_button.interactable = false;
+        }
     }
     public void LeftButtonOnClick()
     {
         ingredient_index -= 1;
         if (ingredient_index < 0){
-            ingredient_index = adding_ingredient_list.Count - 1;
+            ingredient_index = adding_ingredient_list.Count;
         }
         put_ingredient_button.GetComponent<Image>().sprite = ingredient_sprite_list[ingredient_index]; 
         Debug.Log("left");
@@ -250,7 +257,7 @@ public class MainGameController: MonoBehaviour
     public void RightButtonOnClick()
     {
         ingredient_index += 1;
-        if (ingredient_index > adding_ingredient_list.Count - 1){
+        if (ingredient_index > adding_ingredient_list.Count){
             ingredient_index = 0;
         }
         put_ingredient_button.GetComponent<Image>().sprite = ingredient_sprite_list[ingredient_index];       
