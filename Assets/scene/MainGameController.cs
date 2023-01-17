@@ -168,10 +168,11 @@ public class MainGameController: MonoBehaviour
                     PlayerPrefs.SetInt("ingredient_count", foodMasterScript.get_ingredientCount());
                     PlayerPrefs.SetInt("detection_count", foodMasterScript.get_detectionFallCount());
                     PlayerPrefs.SetInt("score", (int)score);
-                    
                     ts = DateTime.Now - dt;
                     PlayerPrefs.SetInt("Minutes", (int)ts.Minutes);
                     PlayerPrefs.SetInt("Seconds", (int)ts.Seconds);
+                    PlayerPrefs.SetString("fried_rice_type", foodMasterScript.finished_fried_rice_type_decision());
+                    Debug.Log(foodMasterScript.finished_fried_rice_type_decision())
                     PlayerPrefs.Save();
                     
                     //シーン遷移
@@ -266,7 +267,10 @@ public class MainGameController: MonoBehaviour
         foodMasterScript.put_ingredient(ingredient_index);
         count_ingredient++;
         if (count_ingredient >= 3){
-            put_ingredient_button.interactable = false;
+            GameObject.Find("put_ingredient").SetActive(false);
+            GameObject.Find("left").SetActive(false);
+            GameObject.Find("right").SetActive(false);
+            GameObject.Find("back").SetActive(false);
         }
         //キムチが追加された場合コメの色を赤くする
         if (ingredient_index == adding_ingredient_list.Count - 1){
