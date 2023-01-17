@@ -329,6 +329,9 @@ MonoBehaviour:
   ingredient_prefab_list: []
   color1: {fileID: 2100000, guid: 753c534679cf6b749ac104e43ecc88c2, type: 2}
   color2: {fileID: 2100000, guid: d571276358e8c4743a57df8cfb89b3ea, type: 2}
+  color_kimchi0: {fileID: 2100000, guid: e36e90eb077f8754082eefffc82673f2, type: 2}
+  color_kimchi1: {fileID: 2100000, guid: a590767cf65555843b1da92f48c2a9c0, type: 2}
+  color_kimchi2: {fileID: 2100000, guid: 84638368cfd992642b0a1beff602ea3a, type: 2}
   score: 0
   ingredient_count: 0
   is_each_ingredient_contains: 0000000000
@@ -1558,7 +1561,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 180, y: -500}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1551097637
 MonoBehaviour:
@@ -1820,7 +1823,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -180, y: -500}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786026043
 MonoBehaviour:
