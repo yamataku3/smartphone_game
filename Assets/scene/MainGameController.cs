@@ -50,8 +50,8 @@ public class MainGameController: MonoBehaviour
     // Audio clip
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
+    public List<string> adding_ingredient_list;
 
-    public List<string> adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg", "shrimp", };
     public int ingredient_index = 0;
 
     public Sprite greenonion_sprite;
@@ -62,6 +62,8 @@ public class MainGameController: MonoBehaviour
     public int difficulty;
     void Start()
     {
+        adding_ingredient_list = new List<string>() { "green_onion", "meat", "egg", "shrimp"};
+        //Debug.Log(adding_ingredient_list.Count);
         // 入力にジャイロをONにする
         Input.gyro.enabled = true;
         Input.compass.enabled = true;
@@ -79,7 +81,7 @@ public class MainGameController: MonoBehaviour
         ingredient_sprite_list.Add(shrimp_sprite);
         // 難易度取得
         int difficulty = PlayerPrefs.GetInt("difficulty");
-        Debug.Log(difficulty);
+        //Debug.Log(difficulty);
         if(difficulty == 2){
             // usual
             TH_large = 2.2;
@@ -248,7 +250,7 @@ public class MainGameController: MonoBehaviour
     {
         ingredient_index -= 1;
         if (ingredient_index < 0){
-            ingredient_index = adding_ingredient_list.Count;
+            ingredient_index = adding_ingredient_list.Count - 1;
         }
         put_ingredient_button.GetComponent<Image>().sprite = ingredient_sprite_list[ingredient_index]; 
         Debug.Log("left");
@@ -257,7 +259,7 @@ public class MainGameController: MonoBehaviour
     public void RightButtonOnClick()
     {
         ingredient_index += 1;
-        if (ingredient_index > adding_ingredient_list.Count){
+        if (ingredient_index > adding_ingredient_list.Count - 1){
             ingredient_index = 0;
         }
         put_ingredient_button.GetComponent<Image>().sprite = ingredient_sprite_list[ingredient_index];       
@@ -288,4 +290,5 @@ public class MainGameController: MonoBehaviour
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene("endScene");
     }
+
 }

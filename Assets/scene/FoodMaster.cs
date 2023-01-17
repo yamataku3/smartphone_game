@@ -79,8 +79,9 @@ public class FoodMaster : MonoBehaviour
             rice_color = color1;
         }else{
          
-         float rand_x = Random.Range(-0.5f, 0.5f);
-            float rand_y = Random.Range(-0.5f, 0.5f);   rice_color = color2;  
+            float rand_x = Random.Range(-0.5f, 0.5f);
+            float rand_y = Random.Range(-0.5f, 0.5f);   
+            rice_color = color2;  
         }
         for (int i = 0; i < riceN; i++)
         {
@@ -96,6 +97,7 @@ public class FoodMaster : MonoBehaviour
     public IEnumerator forceToRice(float delay, bool random_flag, float option, float x, float y, float z){
         Vector3 force;
         yield return new WaitForSeconds(delay);
+        
         for (int i = 0; i < ingredient_list.Count; i++)
         {
             if(random_flag){
@@ -118,7 +120,7 @@ public class FoodMaster : MonoBehaviour
         return System.Math.Max(score, 0);;
     }
 
-
+    /*
     public void put_meat()
     {
         for (int count = 0; count < meatN;)
@@ -169,6 +171,7 @@ public class FoodMaster : MonoBehaviour
             }
         }
     }
+    */
 
     public void put_ingredient(int ingredient_num)
     {
