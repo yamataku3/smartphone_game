@@ -99,15 +99,13 @@ public class FoodMaster : MonoBehaviour
                 rice_color = color2;
             }
         }else{
-            rice_color = color_kimchi0;
+            if (is_each_ingredient_contains[5]){
+                rice_color = color_kimchi0;
+            }
+            rice_color = ingredient_list[0].GetComponent<Renderer>().material;
         }
         for (int i = 0; i < riceN; i++)
         {
-            /*
-            Debug.Log(ingredient_list[i].name);
-            if (Regex.IsMatch(ingredient_list[i].name, "Rice")){
-                ingredient_list[i].GetComponent<Renderer>().material.color = rice_color.color;
-            }*/
             ingredient_list[i].GetComponent<Renderer>().material.color = rice_color.color;
         }
     }
@@ -137,22 +135,6 @@ public class FoodMaster : MonoBehaviour
             ingredient_list[indexList[index]].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
             indexList.RemoveAt(index);
         }
-        /*
-        for (int i = 0; i < ingredient_list.Count; i++)
-        {
-            if(random_flag){
-                float force_x = Random.Range(-0.3f, 0.3f);
-                float force_y = Random.Range(-0.3f, 0.3f);
-                float force_z = Random.Range(1.0f, 2.0f);
-                //float force_z = Random.Range(2.0f, 4.0f);
-                force = new Vector3(force_x * option + x, force_y * option + y, force_z * option + z);  // 力を設定
-            }else{
-                force = new Vector3(x, y, z);  // 力を設定
-            }
-            ingredient_list[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
-        }
-        */
-
     }
 
     //得点を計算
@@ -185,12 +167,24 @@ public class FoodMaster : MonoBehaviour
     public string finished_fried_rice_type_decision()
     {
         string fried_rice_type = "normal_fried_rice";
-        if (is_each_ingredient_contains[3]){
+        if (is_each_ingredient_contains[3] && is_each_ingredient_contains[4]){
+            if (is_each_ingredient_contains[5]){
+                fried_rice_type = "seafood_kimchi_fried_rice";
+            }else{
+                fried_rice_type = "seafood_fried_rice";
+            }    
+        }else if (is_each_ingredient_contains[5]){
+            if (is_each_ingredient_contains[1]){
+                fried_rice_type = "pig_kimchi_fried_rice";
+            }else{
+                fried_rice_type = "kimchi_fried_rice";
+            }
+        }else if (is_each_ingredient_contains[3]){
             fried_rice_type = "shrimp_fried_rice";
+        }else if (is_each_ingredient_contains[4]){
+            fried_rice_type = "crab_fried_rice";
         }else if (is_each_ingredient_contains[0] && is_each_ingredient_contains[1] && is_each_ingredient_contains[2]){
             fried_rice_type = "gomoku_fried_rice";
-        }else if (is_each_ingredient_contains[0]){
-
         }
         return fried_rice_type;
     }
