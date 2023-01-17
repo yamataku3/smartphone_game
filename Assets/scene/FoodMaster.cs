@@ -156,11 +156,21 @@ public class FoodMaster : MonoBehaviour
     }
 
     //得点を計算
-    public double calculatingScore(int i)
+    public double calculatingScore(int lower)
     {
-        score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * i;
+        score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * lower;
         return System.Math.Max(score, 0);;
     }
+
+    public int get_ingredientCount(){
+        return ingredient_list.Count;
+    }
+
+    public int get_detectionFallCount(){
+        return detectionFallenObjectScript.count_fallen_object;
+    }
+
+
 
     public void put_ingredient(int ingredient_index)
     {

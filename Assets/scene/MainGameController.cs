@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,12 +40,15 @@ public class MainGameController: MonoBehaviour
     //private Animator text_anim;
     // FoodMaster
     private FoodMaster foodMasterScript;
+    public int count_upper = 0;
     public int count_lower = 0;//焦げた回数をカウント
     public int count_middle = 0;
     public int count_ingredient = 0;
 
     public double score;
 
+    public DateTime dt;
+    public TimeSpan ts;
 
 
     // Audio clip
@@ -103,7 +107,9 @@ public class MainGameController: MonoBehaviour
             TH_middle = 1.5;
             TH_small = 1.01;
         }
+        dt = DateTime.Now;
     }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -113,6 +119,7 @@ public class MainGameController: MonoBehaviour
         //ジェスチャ判定する時
         if(gesture_judge_flag){
             if (acc.z + 1> TH_large){
+                count_upper++;
                 gesture_judge_flag = false;
                 move_flyingpan_flag = true;
                 move_option = 3;
@@ -149,18 +156,29 @@ public class MainGameController: MonoBehaviour
                 // 元のテキストを消す
                 //chahan_text.enabled = false;
                 chahan_text.text = "Very Good!!!";
-
+                count_middle++;
                 if(game_phase_management == 3){                   
                     // score計算
                     score = foodMasterScript.calculatingScore(count_lower);
                     Debug.Log(score);
                     // score保存
+                    PlayerPrefs.SetInt("count_lower", (int)count_lower);
+                    PlayerPrefs.SetInt("count_middle", (int)count_middle);
+                    PlayerPrefs.SetInt("count_upper", (int)count_upper);
+                    PlayerPrefs.SetInt("ingredient_count", foodMasterScript.get_ingredientCount());
+                    PlayerPrefs.SetInt("detection_count", foodMasterScript.get_detectionFallCount());
                     PlayerPrefs.SetInt("score", (int)score);
+                    
+                    ts = DateTime.Now - dt;
+                    PlayerPrefs.SetInt("Minutes", (int)ts.Minutes);
+                    PlayerPrefs.SetInt("Seconds", (int)ts.Seconds);
                     PlayerPrefs.Save();
+                    
                     //シーン遷移
                     StartCoroutine(changeScene(1.0f));
+
                 }
-                count_middle++;
+                
 
                 if (count_middle % 3 == 0){
                     StartCoroutine(foodMasterScript.riceColorChange(0.5f, game_phase_management));
@@ -282,7 +300,6 @@ public class MainGameController: MonoBehaviour
         move_flyingpan_flag = false;
         move_flyingpan_mode = 0;
         audio_source_se.Stop();
-
         //表示テキストの変更
         int times = 10 - count_middle;
         chahan_text.enabled = true;
