@@ -29,14 +29,15 @@ public class FoodMaster : MonoBehaviour
     public Material color1;
     public Material color2;
     public double score;
-    int[] ingredientN = new int[4];
+    int[] ingredientN;
     string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp", "kimchi"};
-    public int ingredient_count = 0;
+    public int ingredient_count = 0;//食材を入れた回数
     public bool[] is_each_ingredient_contains = {false, false, false, false, false};
 
     public DetectionFallenObject detectionFallenObjectScript;
     void Start()
     {
+        ingredientN = new int[ingredient_name.Length];
         // generate rice
         //rices = new GameObject[riceN];
         for (int count = 0; count < riceN;)
@@ -59,8 +60,7 @@ public class FoodMaster : MonoBehaviour
         ingredient_prefab_list.Add(shrimp);
         ingredientN[3] = shrimpN;
         ingredient_prefab_list.Add(kimchi);
-        ingredientN[3] = shrimpN;
-        
+        ingredientN[4] = kimchiN;
     }
 
 
@@ -201,6 +201,9 @@ public class FoodMaster : MonoBehaviour
             fried_rice_type = "shrimp_fried_rice";
         }else if (is_each_ingredient_contains[0] && is_each_ingredient_contains[1] && is_each_ingredient_contains[2]){
             fried_rice_type = "gomoku_fried_rice";
-        }else if (is_each_ingredient_contains[])
+        }else if (is_each_ingredient_contains[0]){
+
+        }
+        return fried_rice_type;
     }
 }
