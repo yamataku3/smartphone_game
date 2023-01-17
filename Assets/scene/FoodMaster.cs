@@ -17,20 +17,22 @@ public class FoodMaster : MonoBehaviour
     [SerializeField] GameObject meat;
     [SerializeField] GameObject egg;
     [SerializeField] GameObject shrimp;
+    [SerializeField] GameObject kimchi;
     int riceN = 400;
     int greenonionN = 100;
     int meatN = 50;
     int eggN = 200;
     int shrimpN = 30;
+    int kimchiN = 30;
     public List<GameObject> ingredient_list = new List<GameObject>();
     public List<GameObject> ingredient_prefab_list = new List<GameObject>();
     public Material color1;
     public Material color2;
     public double score;
     int[] ingredientN = new int[4];
-    string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp"};
+    string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp", "kimchi"};
     public int ingredient_count = 0;
-    public bool[] is_each_ingredient_contains = {false, false, false, false};
+    public bool[] is_each_ingredient_contains = {false, false, false, false, false};
 
     public DetectionFallenObject detectionFallenObjectScript;
     void Start()
@@ -55,6 +57,8 @@ public class FoodMaster : MonoBehaviour
         ingredient_prefab_list.Add(egg);
         ingredientN[2] = eggN;
         ingredient_prefab_list.Add(shrimp);
+        ingredientN[3] = shrimpN;
+        ingredient_prefab_list.Add(kimchi);
         ingredientN[3] = shrimpN;
         
     }
@@ -110,7 +114,7 @@ public class FoodMaster : MonoBehaviour
     //得点を計算
     public double calculatingScore(int i)
     {
-        score = 10 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * i;
+        score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * i;
         return System.Math.Max(score, 0);;
     }
 
@@ -182,7 +186,18 @@ public class FoodMaster : MonoBehaviour
                 count++;
             }
         }
+        is_each_ingredient_contains[ingredient_num] = true;
 
         //ingredient_list = ingredient_list.OrderBy(a => Guid.NewGuid()).ToList();
+    }
+
+    public string finished_fried_rice_type_decision()
+    {
+        string fried_rice_type = "normal_fried_rice";
+        if (is_each_ingredient_contains[3]){
+            fried_rice_type = "shrimp_fried_rice";
+        }else if (is_each_ingredient_contains[0] && is_each_ingredient_contains[1] && is_each_ingredient_contains[2]){
+            fried_rice_type = "gomoku_fried_rice";
+        }else if (is_each_ingredient_contains[])
     }
 }
