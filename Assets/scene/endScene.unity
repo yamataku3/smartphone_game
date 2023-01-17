@@ -1953,6 +1953,7 @@ MonoBehaviour:
   audioSource_dora: {fileID: 1515261637}
   audioClip_don: {fileID: 8300000, guid: c0d8e7ca7d1e5184dac06f4136d41c8e, type: 3}
   audioClip_dora: {fileID: 8300000, guid: 7d20ea673ce62ee4bb635899b0fd62c8, type: 3}
+  audio_clip_se: {fileID: 0}
 --- !u!4 &1515261636
 Transform:
   m_ObjectHideFlags: 0
@@ -1979,7 +1980,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7d20ea673ce62ee4bb635899b0fd62c8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2075,7 +2076,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c0d8e7ca7d1e5184dac06f4136d41c8e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
