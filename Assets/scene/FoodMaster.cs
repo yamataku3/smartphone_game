@@ -24,14 +24,14 @@ public class FoodMaster : MonoBehaviour
     int eggN = 200;
     int shrimpN = 30;
     int kimchiN = 30;
-    public List<GameObject> ingredient_list = new List<GameObject>();
-    public List<GameObject> ingredient_prefab_list = new List<GameObject>();
+    public List<GameObject> ingredient_list = new List<GameObject>();//実際に何が入っているか
+    public List<GameObject> ingredient_prefab_list = new List<GameObject>();//prefabのリスト
     public Material color1;
     public Material color2;
     public double score;
     int[] ingredientN;
     string[] ingredient_name = {"greenonion", "meat", "egg", "shrimp", "kimchi"};
-    public int ingredient_count = 0;//食材を入れた回数
+    public int ingredient_count = 0;//食材の数　( 米200 + ネギ100で300みたいな)
     public bool[] is_each_ingredient_contains = {false, false, false, false, false};
 
     public DetectionFallenObject detectionFallenObjectScript;
@@ -48,7 +48,9 @@ public class FoodMaster : MonoBehaviour
             {
                 ingredient_list.Add(Instantiate(rice, new Vector3(rand_x, rand_y, 0.7f), Quaternion.identity));
                 ingredient_list[count].name = "Rice" + count.ToString();
+                ingredient_count++;
                 count++;
+
             }
         }
         ingredient_prefab_list.Add(greenonion);
@@ -98,6 +100,28 @@ public class FoodMaster : MonoBehaviour
         Vector3 force;
         yield return new WaitForSeconds(delay);
         
+        List<int> indexList = new List<int>();
+
+        for (int i = 0; i < ingredient_list.Count; i++){
+            indexList.Add(i);
+        }
+
+        while(indexList.Count > 0){
+            int index = Random.Range(0, indexList.Count);
+
+            if(random_flag){
+                float force_x = Random.Range(-0.3f, 0.3f);
+                float force_y = Random.Range(-0.3f, 0.3f);
+                float force_z = Random.Range(1.0f, 2.0f);
+                //float force_z = Random.Range(2.0f, 4.0f);
+                force = new Vector3(force_x * option + x, force_y * option + y, force_z * option + z);  // 力を設定
+            }else{
+                force = new Vector3(x, y, z);  // 力を設定
+            }
+            ingredient_list[indexList[index]].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            indexList.RemoveAt(index);
+        }
+        /*
         for (int i = 0; i < ingredient_list.Count; i++)
         {
             if(random_flag){
@@ -111,6 +135,8 @@ public class FoodMaster : MonoBehaviour
             }
             ingredient_list[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
         }
+        */
+
     }
 
     //得点を計算
@@ -173,9 +199,9 @@ public class FoodMaster : MonoBehaviour
     }
     */
 
-    public void put_ingredient(int ingredient_num)
+    public void put_ingredient(int ingredient_index)
     {
-        for (int count = 0; count < ingredientN[ingredient_num];)
+        for (int count = 0; count < ingredientN[ingredient_index];)
         {
             float rand_x = Random.Range(-0.5f, 0.5f);
             float rand_y = Random.Range(-0.5f, 0.5f);
@@ -183,13 +209,13 @@ public class FoodMaster : MonoBehaviour
             //float rand_y = Random.Range(-0.8f, 0.8f);
             if (rand_x * rand_x + rand_y * rand_y < 0.6)
             {
-                ingredient_list.Add(Instantiate(ingredient_prefab_list[ingredient_num], new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
-                ingredient_list[ingredient_count].name = ingredient_name[ingredient_num] + ingredient_count.ToString();
+                ingredient_list.Add(Instantiate(ingredient_prefab_list[ingredient_index], new Vector3(rand_x, rand_y, 0.9f), Quaternion.identity));
+                ingredient_list[ingredient_count].name = ingredient_name[ingredient_index] + ingredient_count.ToString();
                 ingredient_count++;
                 count++;
             }
         }
-        is_each_ingredient_contains[ingredient_num] = true;
+        is_each_ingredient_contains[ingredient_index] = true;
 
         //ingredient_list = ingredient_list.OrderBy(a => Guid.NewGuid()).ToList();
     }
