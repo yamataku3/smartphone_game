@@ -11,10 +11,13 @@ public class EndGameController : MonoBehaviour
     int resultScore, resultLower, resultUpper, resultMiddle, ingredientCount, detectionCount, Minutes, Seconds;
     [SerializeField] Text timeText, chahanNameText, strongText, weakText, percentText, scoreText;
     [SerializeField] Button RetryButton, TitleButton;
+    // Audio clip
+    [SerializeField] private AudioSource audioSource_don, audioSource_dora;
+    [SerializeField] private AudioClip audioClip_don, audioClip_dora;
     GameObject timeTextObject, chahanNameTextObject, strongTextObject, weakTextObject, RemainingIngredientTextObject, percentTextObject, scoreisObject, scoreTextObject, RetryButtonObject, TitleButtonObject;
 
     string fried_rice_Name;
-    // Audio clip
+    
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
     GameObject[] timeTextObjects, weakTextObjects, strongTextObjects, percentTextObjects, scoreTextObjects;
@@ -51,13 +54,12 @@ public class EndGameController : MonoBehaviour
         Debug.Log("DetectionCount:" + detectionCount);
         Debug.Log("Minutes:" + Minutes);
         Debug.Log("Seconds:" + Seconds);
-        
-        
         StartCoroutine(display_fried_rice_name(1.0f, timeTextObjects, false));
         StartCoroutine(display_fried_rice_name(2.0f, weakTextObjects, false));
         StartCoroutine(display_fried_rice_name(3.0f, strongTextObjects, false));
         StartCoroutine(display_fried_rice_name(4.0f, percentTextObjects, false));
         StartCoroutine(display_fried_rice_name(5.0f, scoreTextObjects, true));
+
     }
 
     // Update is called once per frame
@@ -80,14 +82,12 @@ public class EndGameController : MonoBehaviour
             Debug.Log(gm_list[i]);
             gm_list[i].SetActive(true);
         }
-
         if (is_score){
-            audio_source_se.PlayOneShot(audio_clip_se);
+            audioSource_dora.PlayOneShot(audioClip_dora);
         }else{
-            audio_source_se.PlayOneShot(audio_clip_se);
+            audioSource_don.PlayOneShot(audioClip_don);
         }
-        
-
+        GameObject.Find(name).SetActive(true);
     }
     public void SetFalseObject(){
         timeTextObject = GameObject.Find("Canvas/TimeText");
