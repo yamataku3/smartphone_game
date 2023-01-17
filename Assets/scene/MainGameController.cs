@@ -50,8 +50,8 @@ public class MainGameController: MonoBehaviour
     // Audio clip
     AudioSource audio_source_se;
     public AudioClip audio_clip_se;
-
     public List<string> adding_ingredient_list;
+
     public int ingredient_index = 0;
 
     public Sprite greenonion_sprite;
