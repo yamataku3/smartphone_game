@@ -94,12 +94,12 @@ public class MainGameController: MonoBehaviour
         if (difficulty == 1){
             // easy
             TH_large = 3.0;
-            TH_middle = 1.4;
+            TH_middle = 1.2;
             TH_small = 1.01;
         }else if(difficulty == 2){
             // usual
-            TH_large = 2.2;
-            TH_middle = 1.2;
+            TH_large = 2.5;
+            TH_middle = 1.3;
             TH_small = 1.01;
         }else if (difficulty == 3){
             // hard
