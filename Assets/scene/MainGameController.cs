@@ -138,6 +138,8 @@ public class MainGameController: MonoBehaviour
                 //chahan_text.enabled = false
                 //Animated_Text.text = "Too strong...";
                 chahan_text.text = "Too strong...";
+                
+
             }else if (acc.z + 1 > TH_middle){
                 gesture_judge_flag  = false;
                 move_flyingpan_flag = true;
@@ -158,8 +160,9 @@ public class MainGameController: MonoBehaviour
                 chahan_text.text = "Very Good!!!";
                 count_middle++;
                 if(game_phase_management == 3){                   
+                    ts = DateTime.Now - dt;
                     // score計算
-                    score = foodMasterScript.calculatingScore(count_lower);
+                    score = foodMasterScript.calculatingScore(count_lower, ts.TotalSeconds);
                     Debug.Log(score);
                     // score保存
                     PlayerPrefs.SetInt("count_lower", (int)count_lower);
@@ -168,7 +171,6 @@ public class MainGameController: MonoBehaviour
                     PlayerPrefs.SetInt("ingredient_count", foodMasterScript.get_ingredientCount());
                     PlayerPrefs.SetInt("detection_count", foodMasterScript.get_detectionFallCount());
                     PlayerPrefs.SetInt("score", (int)score);
-                    ts = DateTime.Now - dt;
                     PlayerPrefs.SetInt("Minutes", (int)ts.Minutes);
                     PlayerPrefs.SetInt("Seconds", (int)ts.Seconds);
                     PlayerPrefs.SetString("fried_rice_type", foodMasterScript.finished_fried_rice_type_decision());
@@ -184,6 +186,9 @@ public class MainGameController: MonoBehaviour
                 if (count_middle % 3 == 0){
                     StartCoroutine(foodMasterScript.riceColorChange(0.5f, game_phase_management));
                     game_phase_management++;
+                }
+                if(SystemInfo.supportsVibration){
+                    Handheld.Vibrate();
                 }
                 
             }else if (acc.z + 1 > TH_small){

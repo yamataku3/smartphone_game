@@ -138,10 +138,10 @@ public class FoodMaster : MonoBehaviour
     }
 
     //得点を計算
-    public double calculatingScore(int lower)
+    public double calculatingScore(int lower, double time_real)
     {
-        score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 5 * lower;
-        return System.Math.Max(score, 0);;
+        score = 100 - (double)detectionFallenObjectScript.count_fallen_object / (double)ingredient_list.Count * 100 - 3 * lower - (double)System.Math.Max(time_real - 15, 0) * 0.5 ;
+        return System.Math.Max(score, 0);
     }
 
     public int get_ingredientCount(){
@@ -176,25 +176,25 @@ public class FoodMaster : MonoBehaviour
 
     public string finished_fried_rice_type_decision()
     {
-        string fried_rice_type = "normal_fried_rice";
+        string fried_rice_type = "normal fried rice";
         if (is_each_ingredient_contains[3] && is_each_ingredient_contains[4]){
             if (is_each_ingredient_contains[5]){
-                fried_rice_type = "seafood_kimchi_fried_rice";
+                fried_rice_type = "seafood kimchi \n fried_rice";
             }else{
-                fried_rice_type = "seafood_fried_rice";
+                fried_rice_type = "seafood fried rice";
             }    
         }else if (is_each_ingredient_contains[5]){
             if (is_each_ingredient_contains[1]){
-                fried_rice_type = "pig_kimchi_fried_rice";
+                fried_rice_type = "pig kimchi \n fried rice";
             }else{
-                fried_rice_type = "kimchi_fried_rice";
+                fried_rice_type = "kimchi fried rice";
             }
         }else if (is_each_ingredient_contains[3]){
-            fried_rice_type = "shrimp_fried_rice";
+            fried_rice_type = "shrimp fried rice";
         }else if (is_each_ingredient_contains[4]){
-            fried_rice_type = "crab_fried_rice";
+            fried_rice_type = "crab fried rice";
         }else if (is_each_ingredient_contains[0] && is_each_ingredient_contains[1] && is_each_ingredient_contains[2]){
-            fried_rice_type = "gomoku_fried_rice";
+            fried_rice_type = "gomoku fried rice";
         }
         return fried_rice_type;
     }

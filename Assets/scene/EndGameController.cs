@@ -41,11 +41,11 @@ public class EndGameController : MonoBehaviour
         RetryButton.onClick.AddListener(BackToRetry);
 
         scoreText.text = resultScore.ToString();
-        timeText.text = "TIME: " + Minutes.ToString() + " m " + Seconds.ToString() + "s";
-        weakText.text += resultLower.ToString();
-        strongText.text += resultUpper.ToString();
+        timeText.text = "TIME: " + Minutes.ToString() + " m " + Seconds.ToString() + " s";
+        weakText.text += " " + resultLower.ToString();
+        strongText.text += " " + resultUpper.ToString();
         chahanNameText.text = fried_rice_Name;
-        percentText.text = (100.0 - (double)detectionCount * 100 / (double)ingredientCount).ToString() + "%";
+        percentText.text = (100.0 - (double)detectionCount * 100 / (double)ingredientCount).ToString("f2") + "%";
         
 
         Debug.Log("Upper:" + resultUpper);
